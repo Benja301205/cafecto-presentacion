@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>CAFECTO — Pitch Deck · UCEMA 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #0E0E0E;
+      --surface: #161616;
+      --surface-2: #1C1C1C;
+      --line: rgba(255, 255, 255, 0.07);
+      --line-2: rgba(255, 255, 255, 0.12);
+      --gold: #C8923C;
+      --gold-soft: #E0B25C;
+      --text: #E8E4DF;
+      --muted: #7A7470;
+      --rose: #C08878;
+      --sage: #5A8A68;
+      --amber: #C87830;
+      --good: #6FA56B;
+      --warn: #D4A24A;
+      --serif: "Playfair Display", serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    html, body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+    }
+
+    deck-stage { background: #000; }
+
+    section {
+      box-sizing: border-box;
+      width: 1920px;
+      height: 1080px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 90px 120px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 50% 30%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .topbar .brand { display: flex; align-items: center; gap: 14px; }
+    .topbar .brand .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+    .topbar .chapter b { color: var(--text); font-weight: 600; }
+
+    h1, h2, h3, h4 { margin: 0; color: var(--text); }
+
+    .eyebrow {
+      font-size: 16px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .h-display { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; line-height: 0.95; font-size: 120px; }
+    .h-section { font-family: var(--serif); font-weight: 500; letter-spacing: -0.005em; line-height: 1.04; font-size: 76px; }
+    .h-section.sm { font-size: 64px; }
+    .lead { color: var(--muted); font-size: 24px; line-height: 1.5; font-weight: 400; }
+    .gold { color: var(--gold); }
+    .ital { font-style: italic; }
+    .num-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+    .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; margin-top: 14px; }
+    .head-row .h-section { flex: 1; }
+    .head-row .lead { max-width: 620px; }
+
+    .footstrip {
+      position: absolute;
+      left: 120px; right: 120px; bottom: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--muted); font-size: 14px; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 500;
+    }
+    .source-note { font-family: var(--mono); font-size: 14px; color: var(--muted); letter-spacing: 0.02em; }
+    .source-note b { color: var(--text); font-weight: 500; }
+
+    /* ===== PORTADA ===== */
+    .s-portada { padding: 0; background: radial-gradient(60% 50% at 50% 50%, rgba(200, 146, 60, 0.10) 0%, transparent 60%), var(--bg); }
+    .s-portada .cover { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 2; }
+    .s-portada h1 { font-family: var(--serif); font-weight: 500; letter-spacing: 0.04em; font-size: 260px; line-height: 1; }
+    .s-portada .sub { margin-top: 34px; font-weight: 400; font-size: 30px; letter-spacing: 0.04em; color: var(--text); max-width: 1300px; }
+    .s-portada .sub .you { color: var(--gold); font-style: italic; font-family: var(--serif); font-weight: 500; }
+    .s-portada .gold-rule { width: 140px; height: 2px; background: var(--gold); margin: 44px auto 0; }
+    .s-portada .ucema { margin-top: 38px; color: var(--muted); font-size: 18px; letter-spacing: 0.4em; text-transform: uppercase; }
+    .s-portada .ucema b { color: var(--text); font-weight: 600; }
+    .s-portada .bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px); background-size: 120px 120px; background-position: 60px 60px; mask-image: radial-gradient(60% 60% at 50% 50%, #000 35%, transparent 80%); pointer-events: none; }
+    .s-portada .corner { position: absolute; color: var(--muted); font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; font-family: var(--mono); }
+    .s-portada .corner.tl { top: 60px; left: 120px; }
+    .s-portada .corner.tr { top: 60px; right: 120px; }
+    .s-portada .corner.bl { bottom: 60px; left: 120px; }
+    .s-portada .corner.br { bottom: 60px; right: 120px; }
+
+    /* ===== PAIN CARDS ===== */
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 52px; flex: 1; min-height: 0; }
+    .pain-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 44px; display: flex; flex-direction: column; }
+    .pain-card .ic { font-size: 46px; margin-bottom: 26px; }
+    .pain-card h3 { font-family: var(--serif); font-size: 34px; font-weight: 500; margin-bottom: 16px; line-height: 1.1; }
+    .pain-card p { color: var(--muted); font-size: 21px; line-height: 1.5; margin: 0; }
+    .pain-card .tag { margin-top: auto; padding-top: 28px; font-family: var(--mono); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); }
+
+    /* ===== SOLUTION ===== */
+    .solve-center { margin-top: 44px; background: linear-gradient(180deg, rgba(200,146,60,0.10), rgba(200,146,60,0.02)); border: 1px solid rgba(200,146,60,0.28); border-radius: 12px; padding: 54px 60px; }
+    .solve-center .eq { font-family: var(--serif); font-size: 46px; line-height: 1.25; font-weight: 400; }
+    .solve-center .eq b { color: var(--gold); font-weight: 600; font-style: italic; }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 34px; }
+    .pillar { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 34px 38px; }
+    .pillar .k { font-family: var(--mono); font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .pillar h4 { font-family: var(--serif); font-size: 30px; font-weight: 500; margin: 14px 0 10px; }
+    .pillar p { color: var(--muted); font-size: 19px; line-height: 1.45; margin: 0; }
+
+    /* ===== DATA TILES (why now) ===== */
+    .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 56px; flex: 1; min-height: 0; }
+    .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 42px 34px; display: flex; flex-direction: column; }
+    .tile .big { font-family: var(--serif); font-size: 68px; font-weight: 600; color: var(--gold); line-height: 1; letter-spacing: -0.01em; }
+    .tile .lbl { margin-top: 22px; font-size: 21px; color: var(--text); line-height: 1.4; }
+    .tile .src { margin-top: auto; padding-top: 24px; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ===== TAM RINGS ===== */
+    .market-wrap { display: flex; gap: 70px; align-items: center; margin-top: 30px; flex: 1; min-height: 0; }
+    .rings { position: relative; width: 620px; height: 620px; flex-shrink: 0; }
+    .ring { position: absolute; border-radius: 50%; display: flex; align-items: flex-start; justify-content: center; left: 50%; transform: translateX(-50%); }
+    .ring.tam { width: 620px; height: 620px; top: 0; background: rgba(200,146,60,0.06); border: 1px solid rgba(200,146,60,0.22); }
+    .ring.sam { width: 400px; height: 400px; top: 150px; background: rgba(200,146,60,0.10); border: 1px solid rgba(200,146,60,0.32); }
+    .ring.som { width: 200px; height: 200px; top: 300px; background: rgba(200,146,60,0.20); border: 1px solid rgba(200,146,60,0.5); align-items: center; }
+    .ring .rlabel { padding-top: 26px; text-align: center; }
+    .ring.som .rlabel { padding-top: 0; }
+    .ring .rk { font-family: var(--mono); font-size: 15px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; }
+    .ring .rv { font-family: var(--serif); font-size: 34px; font-weight: 600; margin-top: 4px; }
+    .market-side { flex: 1; }
+    .market-side .mrow { padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .market-side .mrow:last-child { border-bottom: 0; }
+    .market-side .mrow .mk { font-family: var(--mono); font-size: 15px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+    .market-side .mrow .mv { font-family: var(--serif); font-size: 30px; font-weight: 500; margin: 6px 0 4px; }
+    .market-side .mrow .md { color: var(--muted); font-size: 19px; line-height: 1.4; }
+    .market-note { margin-top: 26px; background: var(--surface); border-left: 3px solid var(--gold); border-radius: 4px; padding: 24px 28px; font-size: 21px; line-height: 1.5; color: var(--text); }
+
+    /* ===== PRODUCTO ===== */
+    .product-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; flex: 1; min-height: 0; }
+    .product-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+    .product-card .top-bar { height: 3px; background: var(--rose); }
+    .product-card.sage .top-bar { background: var(--sage); }
+    .product-card.amber .top-bar { background: var(--amber); }
+    .product-card .img { height: 240px; background-size: cover; background-position: center; }
+    .product-card .body { padding: 28px 32px; flex: 1; display: flex; flex-direction: column; }
+    .product-card .ingr { font-family: var(--mono); font-size: 15px; color: var(--rose); letter-spacing: 0.04em; }
+    .product-card.sage .ingr { color: var(--sage); }
+    .product-card.amber .ingr { color: var(--amber); }
+    .product-card .name { font-family: var(--serif); font-size: 38px; font-weight: 500; margin: 8px 0 12px; }
+    .product-card .price { font-family: var(--mono); font-size: 26px; color: var(--text); }
+    .product-card .mg { margin-top: 6px; font-size: 17px; color: var(--muted); }
+    .product-card .footer-line { display: flex; justify-content: space-between; padding: 18px 32px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); font-family: var(--mono); }
+    .combo-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 26px; }
+    .combo { background: linear-gradient(180deg, rgba(200,146,60,0.08), transparent); border: 1px solid rgba(200,146,60,0.24); border-radius: 8px; padding: 26px 34px; display: flex; align-items: center; justify-content: space-between; }
+    .combo .cl { font-family: var(--serif); font-size: 30px; font-weight: 500; }
+    .combo .cl small { display: block; font-family: var(--sans); font-size: 16px; color: var(--muted); font-weight: 400; margin-top: 4px; }
+    .combo .cp { text-align: right; }
+    .combo .cp .p { font-family: var(--mono); font-size: 30px; color: var(--gold); }
+    .combo .cp .s { font-size: 15px; color: var(--muted); font-family: var(--mono); }
+
+    /* ===== BIG STAT CARDS ===== */
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 52px; }
+    .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 40px 36px; }
+    .stat .v { font-family: var(--serif); font-size: 62px; font-weight: 600; color: var(--gold); line-height: 1; letter-spacing: -0.01em; }
+    .stat .v small { font-size: 30px; }
+    .stat .k { margin-top: 18px; font-size: 20px; color: var(--text); }
+    .stat .d { margin-top: 8px; font-size: 17px; color: var(--muted); line-height: 1.4; }
+    .model-note { margin-top: 40px; font-size: 23px; color: var(--muted); line-height: 1.55; max-width: 1400px; }
+    .model-note b { color: var(--text); font-weight: 600; }
+
+    /* ===== P&L / FINANCE ===== */
+    .fin-wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; margin-top: 40px; flex: 1; min-height: 0; align-items: center; }
+    .stack-bar { display: flex; flex-direction: column; gap: 3px; }
+    .stack-seg { display: flex; align-items: center; justify-content: space-between; padding: 0 26px; border-radius: 4px; color: #0E0E0E; font-weight: 600; }
+    .stack-seg .sl { font-size: 20px; font-family: var(--sans); }
+    .stack-seg .sv { font-family: var(--mono); font-size: 20px; }
+    .stack-seg.rev { background: var(--gold); }
+    .stack-seg.cogs { background: #4A4038; color: var(--text); }
+    .stack-seg.gp { background: var(--rose); }
+    .stack-seg.opex { background: #3A342E; color: var(--text); }
+    .stack-seg.ebitda { background: var(--sage); }
+    .fin-stats { display: flex; flex-direction: column; gap: 26px; }
+    .fin-stat { border-left: 3px solid var(--gold); padding: 6px 0 6px 26px; }
+    .fin-stat .v { font-family: var(--serif); font-size: 56px; font-weight: 600; line-height: 1; color: var(--text); }
+    .fin-stat .v.good { color: var(--sage); }
+    .fin-stat .k { margin-top: 12px; font-size: 21px; color: var(--muted); line-height: 1.4; }
+    .fin-stat .k b { color: var(--text); font-weight: 600; }
+
+    /* ===== PROJECTION BARS ===== */
+    .scale-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; margin-top: 34px; flex: 1; min-height: 0; align-items: center; }
+    .ltv-block { display: flex; flex-direction: column; gap: 22px; }
+    .ltv-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 30px 34px; }
+    .ltv-card .k { font-family: var(--mono); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .ltv-card .v { font-family: var(--serif); font-size: 46px; font-weight: 600; margin-top: 8px; }
+    .ltv-card.hero { background: linear-gradient(180deg, rgba(90,138,104,0.14), transparent); border-color: rgba(90,138,104,0.4); }
+    .ltv-card.hero .v { color: var(--sage); font-size: 72px; }
+    .proj-bars { display: flex; align-items: flex-end; gap: 40px; height: 100%; padding-bottom: 60px; }
+    .proj-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+    .proj-col .bar { width: 100%; max-width: 150px; background: linear-gradient(180deg, var(--gold), rgba(200,146,60,0.35)); border-radius: 6px 6px 0 0; position: relative; }
+    .proj-col .bar .pct { position: absolute; top: -46px; left: 0; right: 0; text-align: center; font-family: var(--serif); font-size: 34px; font-weight: 600; color: var(--gold); }
+    .proj-col .cap { margin-top: 20px; text-align: center; }
+    .proj-col .cap .m { font-size: 22px; font-weight: 600; }
+    .proj-col .cap .o { font-family: var(--mono); font-size: 16px; color: var(--muted); margin-top: 4px; }
+
+    /* ===== MATRIX 2x2 ===== */
+    .matrix { position: relative; margin-top: 30px; flex: 1; min-height: 0; border-left: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); margin-bottom: 60px; }
+    .matrix .axis-x { position: absolute; bottom: -42px; width: 100%; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .matrix .axis-y { position: absolute; left: -42px; top: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; font-family: var(--mono); font-size: 16px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; writing-mode: vertical-rl; }
+    .matrix .axis-y span:last-child { transform: rotate(180deg); }
+    .m-dot { position: absolute; transform: translate(-50%, 50%); text-align: center; }
+    .m-dot .d { width: 18px; height: 18px; border-radius: 50%; background: var(--muted); margin: 0 auto 10px; }
+    .m-dot .n { font-size: 19px; color: var(--muted); }
+    .m-dot.us .d { width: 30px; height: 30px; background: var(--gold); box-shadow: 0 0 0 8px rgba(200,146,60,0.15); }
+    .m-dot.us .n { color: var(--gold); font-family: var(--serif); font-size: 30px; font-weight: 600; }
+    .grid-lines { position: absolute; inset: 0; }
+    .grid-lines::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed var(--line); }
+    .grid-lines::after { content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px dashed var(--line); }
+    .vs-note { margin-top: 4px; font-size: 22px; color: var(--muted); }
+    .vs-note b { color: var(--text); }
+
+    /* ===== GTM COLUMNS ===== */
+    .gtm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 52px; flex: 1; min-height: 0; }
+    .gtm-col { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 42px; display: flex; flex-direction: column; }
+    .gtm-col .ic { font-size: 42px; margin-bottom: 22px; }
+    .gtm-col h3 { font-family: var(--serif); font-size: 32px; font-weight: 500; margin-bottom: 22px; }
+    .gtm-col ul { margin: 0; padding: 0; list-style: none; }
+    .gtm-col li { font-size: 20px; color: var(--muted); line-height: 1.4; padding: 12px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
+    .gtm-col li:first-child { border-top: 0; }
+    .gtm-col li b { color: var(--text); font-weight: 600; font-family: var(--mono); white-space: nowrap; }
+
+    /* ===== TEAM ===== */
+    .team-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 52px; flex: 1; min-height: 0; }
+    .member { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 40px 34px; display: flex; flex-direction: column; }
+    .member .av { width: 88px; height: 88px; border-radius: 50%; background: linear-gradient(135deg, var(--surface-2), #2a2a2a); border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 34px; color: var(--gold); margin-bottom: 28px; }
+    .member h4 { font-family: var(--serif); font-size: 30px; font-weight: 500; margin-bottom: 6px; }
+    .member .role { font-family: var(--mono); font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .member p { color: var(--muted); font-size: 18px; line-height: 1.45; margin: 18px 0 0; }
+
+    /* ===== VISION / CLOSE ===== */
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .tnode { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 40px; }
+    .tnode.now { border-color: rgba(200,146,60,0.4); }
+    .tnode .stage-l { font-family: var(--mono); font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .tnode .stage-d { font-family: var(--serif); font-size: 32px; font-weight: 500; margin: 12px 0 20px; }
+    .tnode ul { margin: 0; padding: 0; list-style: none; }
+    .tnode li { font-size: 19px; color: var(--muted); line-height: 1.4; padding: 9px 0; }
+    .closing { margin-top: 54px; text-align: center; }
+    .closing .quote { font-family: var(--serif); font-size: 46px; font-weight: 400; font-style: italic; line-height: 1.3; }
+    .closing .quote .b { color: var(--gold); font-weight: 600; }
+    .closing .signature { margin-top: 34px; font-family: var(--mono); font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .closing .signature b { color: var(--text); }
+    .closing .signature .dotsep { color: var(--gold); margin: 0 14px; }
+  </style>
+</head>
+
+<body>
+  <deck-stage>
+
+    <!-- 01 PORTADA -->
+    <section data-screen-label="01 Portada" class="s-portada">
+      <div class="bg-grid"></div>
+      <div class="corner tl">CAFECTO · EST. 2026</div>
+      <div class="corner tr">PITCH DECK · INVERSORES</div>
+      <div class="corner bl">UCEMA · COMERCIO ELECTRÓNICO</div>
+      <div class="corner br">01 / 13</div>
+      <div class="cover">
+        <div style="font-family:var(--mono);font-size:14px;letter-spacing:0.5em;color:var(--gold);margin-bottom:44px;">— COFFEE × FUNCTION —</div>
+        <h1>CAFECTO</h1>
+        <div class="gold-rule"></div>
+        <div class="sub">El café que ya tomás, ahora <span class="you">trabaja para vos.</span></div>
+        <div class="ucema">Pitch Deck <span style="margin:0 20px;color:var(--gold);">/</span> <b>UCEMA 2026</b> <span style="margin:0 20px;color:var(--gold);">/</span> Comercio Electrónico</div>
+      </div>
+    </section>
+
+    <!-- 02 PROBLEMA -->
+    <section data-screen-label="02 Problema">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">01 <b>· El Problema</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El problema</div>
+          <h2 class="h-section">Tomás toma café por la energía.<br>Pero paga <span class="gold ital">un costo</span>.</h2>
+        </div>
+        <div class="lead">El consumidor wellness argentino quiere rendir mejor. Hoy tiene que elegir entre el café que le gusta y los suplementos que necesita. Y desconfía de casi todo.</div>
+      </div>
+      <div class="three-col">
+        <div class="pain-card">
+          <div class="ic">⚡</div>
+          <h3>El pico y el bajón</h3>
+          <p>La cafeína sola dispara ansiedad a la mañana y una caída de energía a media tarde. El combustible dura poco.</p>
+          <div class="tag">Energía inestable</div>
+        </div>
+        <div class="pain-card">
+          <div class="ic">🧴</div>
+          <h3>Todo por separado</h3>
+          <p>Colágeno, L-teanina, MCT: cada beneficio es otra compra, otra pastilla, otra rutina que sostener. Fricción pura.</p>
+          <div class="tag">Rutina fragmentada</div>
+        </div>
+        <div class="pain-card">
+          <div class="ic">🚫</div>
+          <h3>Promesas vacías</h3>
+          <p>La góndola wellness está llena de claims sin dosis ni respaldo. El comprador informado ya no cree en la etiqueta.</p>
+          <div class="tag">Desconfianza</div>
+        </div>
+      </div>
+      <div class="footstrip"><span>02</span><span class="source-note"><b>69%</b> de los hogares argentinos ya elige alimentos por sus ingredientes y beneficios · Kantar 2025</span></div>
+    </section>
+
+    <!-- 03 SOLUCION -->
+    <section data-screen-label="03 Solución">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">02 <b>· La Solución</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">La solución</div>
+          <h2 class="h-section">Un solo café resuelve<br>las <span class="gold ital">tres cosas</span>.</h2>
+        </div>
+        <div class="lead">No inventamos un hábito nuevo. Metemos el beneficio funcional adentro del ritual que ya existe: tu café de la mañana.</div>
+      </div>
+      <div class="solve-center">
+        <div class="eq">Café de especialidad <b>+</b> un ingrediente funcional en dosis real <b>=</b> el beneficio que buscás, sin fricción y sin nervios.</div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="k">01 · Sin fricción</div>
+          <h4>Ya tomás café</h4>
+          <p>Cero cambio de hábito. El beneficio viaja dentro de algo que ya hacés todas las mañanas.</p>
+        </div>
+        <div class="pillar">
+          <div class="k">02 · Dosis real</div>
+          <h4>10g · 200mg · 5g</h4>
+          <p>Colágeno, L-teanina y MCT en cantidad efectiva, no en trazas de marketing.</p>
+        </div>
+        <div class="pillar">
+          <div class="k">03 · Sin nervios</div>
+          <h4>Funcional, no estimulante</h4>
+          <p>Energía y foco sostenidos. El ingrediente activo modula, no acelera.</p>
+        </div>
+      </div>
+      <div class="footstrip"><span>03</span><span>Un ritual · Un beneficio</span></div>
+    </section>
+
+    <!-- 04 POR QUE AHORA -->
+    <section data-screen-label="04 Por qué ahora">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">03 <b>· Por qué ahora</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Por qué ahora</div>
+          <h2 class="h-section">Tres olas cruzándose<br>al mismo <span class="gold ital">tiempo</span>.</h2>
+        </div>
+        <div class="lead">Café de especialidad, consumo funcional y compra online crecen juntos y a dos dígitos. La ventana está abierta hoy.</div>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <div class="big">+10,3%</div>
+          <div class="lbl">anual — café de especialidad en Argentina (US$1.020M → 2.470M)</div>
+          <div class="src">Deep Market Insights · 2024–2033</div>
+        </div>
+        <div class="tile">
+          <div class="big">US$4.500M</div>
+          <div class="lbl">mercado global de café funcional, creciendo +11% anual</div>
+          <div class="src">Mordor Intelligence · 2025</div>
+        </div>
+        <div class="tile">
+          <div class="big">#2</div>
+          <div class="lbl">el colágeno es el segundo suplemento más consumido del país</div>
+          <div class="src">Kantar Argentina · 2025</div>
+        </div>
+        <div class="tile">
+          <div class="big">+13%</div>
+          <div class="lbl">anual — el canal online de wellness, el de mayor crecimiento</div>
+          <div class="src">Mordor Intelligence · 2025</div>
+        </div>
+      </div>
+      <div class="footstrip"><span>04</span><span>El momento del café funcional en Argentina</span></div>
+    </section>
+
+    <!-- 05 MERCADO -->
+    <section data-screen-label="05 Mercado">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">04 <b>· El Mercado</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El mercado</div>
+          <h2 class="h-section sm">Un océano; arrancamos<br>por la <span class="gold ital">orilla</span>.</h2>
+        </div>
+        <div class="lead">No necesitamos ganar el mercado entero. Con el break-even en 13,8 pedidos al mes, capturar una fracción ya nos hace rentables.</div>
+      </div>
+      <div class="market-wrap">
+        <div class="rings">
+          <div class="ring tam"><div class="rlabel"><div class="rk">TAM</div><div class="rv">US$1.020M</div></div></div>
+          <div class="ring sam"><div class="rlabel"><div class="rk">SAM</div><div class="rv">US$90M</div></div></div>
+          <div class="ring som"><div class="rlabel"><div class="rk">SOM</div><div class="rv" style="font-size:26px;">Beachhead</div></div></div>
+        </div>
+        <div class="market-side">
+          <div class="mrow">
+            <div class="mk">TAM · Total</div>
+            <div class="mv">Café de especialidad en Argentina</div>
+            <div class="md">US$1.020M en 2024, camino a US$2.470M en 2033.</div>
+          </div>
+          <div class="mrow">
+            <div class="mk">SAM · Alcanzable</div>
+            <div class="mv">Café funcional comprado online</div>
+            <div class="md">Consumidor ABC1 urbano, wellness, canal D2C. ~9% del total.</div>
+          </div>
+          <div class="mrow">
+            <div class="mk">SOM · Foco Año 1</div>
+            <div class="mv">CABA + GBA, recompra</div>
+            <div class="md">Beachhead concentrado. Ganar densidad antes que amplitud.</div>
+          </div>
+          <div class="market-note">Nuestra ventaja no es el tamaño del mercado, es <b>lo poco que necesitamos capturar para ser rentables.</b></div>
+        </div>
+      </div>
+      <div class="footstrip"><span>05</span><span>TAM · SAM · SOM</span></div>
+    </section>
+
+    <!-- 06 PRODUCTO -->
+    <section data-screen-label="06 Producto">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">05 <b>· El Producto</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El producto</div>
+          <h2 class="h-section">Tres blends. Dos combos.<br>Un margen del <span class="gold">63%</span>.</h2>
+        </div>
+        <div class="lead">Mismo grano de especialidad, tres ingredientes funcionales. Los combos empujan el ticket y la recurrencia.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-card rose">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/daily-glow.png');"></div>
+          <div class="body">
+            <div class="ingr">Colágeno Hidrolizado · 10g</div>
+            <div class="name">Daily <span style="color:var(--rose);font-style:italic;">Glow</span></div>
+            <div class="price">$27.999</div>
+            <div class="mg">Piel · Cabello · Articulaciones — margen 63,0%</div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span>15 servicios</span></div>
+        </div>
+        <div class="product-card sage">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/zen-focus.png');"></div>
+          <div class="body">
+            <div class="ingr">L-Teanina · 200mg</div>
+            <div class="name">Zen <span style="color:var(--sage);font-style:italic;">Focus</span></div>
+            <div class="price">$25.999</div>
+            <div class="mg">Foco · Calma · Sin nervios — margen 62,6%</div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span>15 servicios</span></div>
+        </div>
+        <div class="product-card amber">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/turbo-drive.png');"></div>
+          <div class="body">
+            <div class="ingr">MCT Oil Powder · 5g</div>
+            <div class="name">Turbo <span style="color:var(--amber);font-style:italic;">Drive</span></div>
+            <div class="price">$28.999</div>
+            <div class="mg">Energía · Saciedad · Keto — margen 63,2%</div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span>15 servicios</span></div>
+        </div>
+      </div>
+      <div class="combo-strip">
+        <div class="combo">
+          <div class="cl">Glow + Zen <small>El combo más vendido</small></div>
+          <div class="cp"><div class="p">$44.999</div><div class="s">antes $53.998 · margen 57,6%</div></div>
+        </div>
+        <div class="combo">
+          <div class="cl">Combo Total <small>Los tres blends · señuelo de valor</small></div>
+          <div class="cp"><div class="p">$64.999</div><div class="s">antes $82.997 · margen 56,5%</div></div>
+        </div>
+      </div>
+      <div class="footstrip"><span>06</span><span>Mismo grano · Tres funciones</span></div>
+    </section>
+
+    <!-- 07 MODELO DE NEGOCIO -->
+    <section data-screen-label="07 Modelo de Negocio">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">06 <b>· Modelo de Negocio</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Cómo ganamos plata</div>
+          <h2 class="h-section">D2C puro: todo el<br>margen es <span class="gold ital">nuestro</span>.</h2>
+        </div>
+        <div class="lead">Vendemos directo desde web propia. Sin góndola, sin distribuidor, sin markup de retail. Y el café es consumible: se termina, se vuelve a comprar.</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="v"><small>$</small>34.808</div>
+          <div class="k">Ticket promedio (AOV)</div>
+          <div class="d">Empujado por combos</div>
+        </div>
+        <div class="stat">
+          <div class="v">64,6<small>%</small></div>
+          <div class="k">Margen bruto</div>
+          <div class="d">Sobre venta neta</div>
+        </div>
+        <div class="stat">
+          <div class="v"><small>$</small>104.424</div>
+          <div class="k">LTV proyectado</div>
+          <div class="d">3 compras/año</div>
+        </div>
+        <div class="stat">
+          <div class="v">≈3<small>×/año</small></div>
+          <div class="k">Frecuencia de recompra</div>
+          <div class="d">Consumo diario</div>
+        </div>
+      </div>
+      <div class="model-note">El negocio no vive de la primera venta: vive de la <b>recompra</b>. Un cliente satisfecho vuelve cada mes, y sobre esa base construimos <b>suscripciones</b> — ingreso predecible y recurrente.</div>
+      <div class="footstrip"><span>07</span><span>Venta directa · Consumo recurrente</span></div>
+    </section>
+
+    <!-- 08 MOTOR FINANCIERO (BOOTSTRAPPED) -->
+    <section data-screen-label="08 Rentabilidad">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">07 <b>· Unit Economics</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El motor financiero</div>
+          <h2 class="h-section">Rentable desde el primer mes.<br>Sin levantar <span class="gold ital">un peso</span>.</h2>
+        </div>
+        <div class="lead">Modelo financiero del Mes 1 sobre 26 pedidos. El margen cubre los costos fijos con margen de sobra.</div>
+      </div>
+      <div class="fin-wrap">
+        <div class="stack-bar">
+          <div class="stack-seg rev" style="height:118px;"><span class="sl">Venta neta</span><span class="sv">$877.850 · 100%</span></div>
+          <div class="stack-seg cogs" style="height:64px;"><span class="sl">(–) Costo del producto</span><span class="sv">35,4%</span></div>
+          <div class="stack-seg gp" style="height:96px;"><span class="sl">Margen bruto</span><span class="sv">$566.850 · 64,6%</span></div>
+          <div class="stack-seg opex" style="height:74px;"><span class="sl">(–) Logística + pago + mkt + G&A</span><span class="sv">41,3%</span></div>
+          <div class="stack-seg ebitda" style="height:96px;"><span class="sl">EBITDA</span><span class="sv">$204.246 · 23,3%</span></div>
+        </div>
+        <div class="fin-stats">
+          <div class="fin-stat">
+            <div class="v good">23,3%</div>
+            <div class="k">de <b>EBITDA</b> ya en el Mes 1</div>
+          </div>
+          <div class="fin-stat">
+            <div class="v">13,8</div>
+            <div class="k">pedidos para <b>break-even</b> — lo cubrimos <b>1,88×</b></div>
+          </div>
+          <div class="fin-stat">
+            <div class="v gold" style="color:var(--gold);">$0</div>
+            <div class="k">de <b>capital externo</b> necesario para operar</div>
+          </div>
+        </div>
+      </div>
+      <div class="footstrip"><span>08</span><span class="source-note">Modelo financiero · <b>26 pedidos</b> · Mes 1</span></div>
+    </section>
+
+    <!-- 09 POR QUE ESCALA -->
+    <section data-screen-label="09 Escalabilidad">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">08 <b>· Escalabilidad</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Por qué escala</div>
+          <h2 class="h-section">Cada cliente vale <span class="gold">24×</span><br>lo que cuesta traerlo.</h2>
+        </div>
+        <div class="lead">A más volumen, más margen: los costos fijos se diluyen y el EBITDA sube del 23% al 43% en seis meses.</div>
+      </div>
+      <div class="scale-wrap">
+        <div class="ltv-block">
+          <div class="ltv-card hero">
+            <div class="k">LTV / CAC</div>
+            <div class="v">24×</div>
+          </div>
+          <div class="ltv-card">
+            <div class="k">Costo de adquisición (CAC)</div>
+            <div class="v" style="font-size:38px;">$4.346</div>
+          </div>
+          <div class="ltv-card">
+            <div class="k">Valor de vida del cliente (LTV)</div>
+            <div class="v" style="font-size:38px;">$104.424</div>
+          </div>
+        </div>
+        <div class="proj-bars">
+          <div class="proj-col">
+            <div class="bar" style="height:38%;"><div class="pct">23%</div></div>
+            <div class="cap"><div class="m">Mes 1</div><div class="o">26 pedidos</div></div>
+          </div>
+          <div class="proj-col">
+            <div class="bar" style="height:62%;"><div class="pct">36%</div></div>
+            <div class="cap"><div class="m">Mes 3</div><div class="o">54 pedidos</div></div>
+          </div>
+          <div class="proj-col">
+            <div class="bar" style="height:92%;"><div class="pct">43%</div></div>
+            <div class="cap"><div class="m">Mes 6</div><div class="o">126 pedidos</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="footstrip"><span>09</span><span class="source-note">Margen EBITDA proyectado · 416 pedidos en 6 meses</span></div>
+    </section>
+
+    <!-- 10 COMPETENCIA -->
+    <section data-screen-label="10 Competencia">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">09 <b>· Competencia</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Competencia</div>
+          <h2 class="h-section sm">Más producto, mejor precio,<br>marca <span class="gold ital">propia</span>.</h2>
+        </div>
+        <div class="lead">Los suplementos genéricos no son café. Las cafeterías no son funcionales. Nadie ocupa el cuadrante de arriba a la derecha.</div>
+      </div>
+      <div class="matrix">
+        <div class="grid-lines"></div>
+        <div class="axis-x"><span>← Commodity</span><span>Marca &amp; ritual →</span></div>
+        <div class="axis-y"><span>Funcional</span><span>Sin función</span></div>
+        <div class="m-dot" style="left:22%; bottom:24%;"><div class="d"></div><div class="n">Café de góndola</div></div>
+        <div class="m-dot" style="left:30%; bottom:66%;"><div class="d"></div><div class="n">Suplementos genéricos</div></div>
+        <div class="m-dot" style="left:64%; bottom:30%;"><div class="d"></div><div class="n">Café de especialidad</div></div>
+        <div class="m-dot us" style="left:82%; bottom:82%;"><div class="d"></div><div class="n">CAFECTO</div></div>
+      </div>
+      <div class="vs-note"><b>Referencia:</b> Vitawellness café con colágeno $30.600 / 180g &nbsp;·&nbsp; CAFECTO Daily Glow <b>$27.999 / 200g</b> — más gramos, menor precio por gramo.</div>
+      <div class="footstrip"><span>10</span><span>Posicionamiento único</span></div>
+    </section>
+
+    <!-- 11 GO-TO-MARKET -->
+    <section data-screen-label="11 Go-to-Market">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">10 <b>· Go-to-Market</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Cómo crecemos</div>
+          <h2 class="h-section">Adquisición barata, pago sin<br>fricción, entrega en <span class="gold">48hs</span>.</h2>
+        </div>
+        <div class="lead">Toda la operación está montada sobre herramientas que ya funcionan. Cero infraestructura pesada.</div>
+      </div>
+      <div class="gtm">
+        <div class="gtm-col">
+          <div class="ic">🎯</div>
+          <h3>Adquisición</h3>
+          <ul>
+            <li>Meta Ads segmentado <b>ABC1</b></li>
+            <li>SEO café funcional <b>orgánico</b></li>
+            <li>Combos que suben ticket <b>+35%</b></li>
+            <li>Objetivo CAC Mes 6 <b>$8.000</b></li>
+          </ul>
+        </div>
+        <div class="gtm-col">
+          <div class="ic">💳</div>
+          <h3>Medios de pago</h3>
+          <ul>
+            <li>MercadoPago <b>60%</b></li>
+            <li>Transferencia 3.0 <b>25%</b></li>
+            <li>MODO / billeteras <b>15%</b></li>
+            <li>Ahorro vs. inmediato <b>$19.200/mes</b></li>
+          </ul>
+        </div>
+        <div class="gtm-col">
+          <div class="ic">🚚</div>
+          <h3>Logística</h3>
+          <ul>
+            <li>Andreani nativo <b>Tiendanube</b></li>
+            <li>CABA / GBA <b>24–48hs</b></li>
+            <li>Envío gratis en <b>combos</b></li>
+            <li>Stock propio, ROP <b>10 u.</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footstrip"><span>11</span><span>Operación liviana · Márgenes protegidos</span></div>
+    </section>
+
+    <!-- 12 EQUIPO -->
+    <section data-screen-label="12 Equipo">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">11 <b>· El Equipo</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El equipo</div>
+          <h2 class="h-section">Estudiantes de UCEMA<br>construyendo una <span class="gold ital">marca</span>.</h2>
+        </div>
+        <div class="lead">Un equipo chico que cubre producto, marketing, finanzas y tecnología. Ejecución sobre teoría.</div>
+      </div>
+      <div class="team-row">
+        <div class="member">
+          <div class="av">A</div>
+          <h4>[Nombre]</h4>
+          <div class="role">Producto &amp; Operaciones</div>
+          <p>Formulación, packaging y cadena de proveedores.</p>
+        </div>
+        <div class="member">
+          <div class="av">B</div>
+          <h4>[Nombre]</h4>
+          <div class="role">Marketing &amp; Growth</div>
+          <p>Adquisición, contenido y performance en Meta.</p>
+        </div>
+        <div class="member">
+          <div class="av">C</div>
+          <h4>[Nombre]</h4>
+          <div class="role">Finanzas</div>
+          <p>Unit economics, pricing y proyección financiera.</p>
+        </div>
+        <div class="member">
+          <div class="av">D</div>
+          <h4>[Nombre]</h4>
+          <div class="role">Tecnología &amp; Web</div>
+          <p>Tienda D2C, checkout y analítica de datos.</p>
+        </div>
+      </div>
+      <div class="footstrip"><span>12</span><span class="source-note">Completar con nombres y roles reales del grupo</span></div>
+    </section>
+
+    <!-- 13 VISION / CIERRE -->
+    <section data-screen-label="13 Visión">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">12 <b>· La Visión</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">La visión</div>
+          <h2 class="h-section sm">De un ritual matutino a la marca de<br>café funcional de <span class="gold ital">Argentina</span>.</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tnode now">
+          <div class="stage-l">Hoy</div>
+          <div class="stage-d">Modelo validado</div>
+          <ul>
+            <li>☕ 3 blends + 2 combos definidos</li>
+            <li>🌐 Web D2C funcional</li>
+            <li>📊 Unit economics rentables</li>
+          </ul>
+        </div>
+        <div class="tnode">
+          <div class="stage-l">Año 1</div>
+          <div class="stage-d">Escala CABA + GBA</div>
+          <ul>
+            <li>🚀 Meta Ads a escala</li>
+            <li>🔁 Suscripción mensual</li>
+            <li>⭐ NPS y recompra medidos</li>
+          </ul>
+        </div>
+        <div class="tnode">
+          <div class="stage-l">Año 3</div>
+          <div class="stage-d">Expansión nacional</div>
+          <ul>
+            <li>🌎 Todo el país + nuevos formatos</li>
+            <li>🏪 Retail selectivo (wellness)</li>
+            <li>🧪 Nuevos blends funcionales</li>
+          </ul>
+        </div>
+      </div>
+      <div class="closing">
+        <div class="quote">"El café que ya tomás, <span class="b">ahora trabaja para vos."</span></div>
+        <div class="signature">CAFECTO <span class="dotsep">·</span> Comercio Electrónico <span class="dotsep">·</span> <b>UCEMA 2026</b></div>
+      </div>
+      <div class="footstrip"><span>13</span><span>Gracias</span></div>
+    </section>
+
+  </deck-stage>
+  <script src="deck-stage.js"></script>
+</body>
+
+</html>
