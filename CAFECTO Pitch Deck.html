@@ -280,6 +280,47 @@
     .closing .signature { margin-top: 34px; font-family: var(--mono); font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
     .closing .signature b { color: var(--text); }
     .closing .signature .dotsep { color: var(--gold); margin: 0 14px; }
+
+    /* ===== SEGMENTO B2C / B2B ===== */
+    .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 48px; flex: 1; min-height: 0; }
+    .seg-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 48px 50px; display: flex; flex-direction: column; }
+    .seg-card.core { border-color: rgba(200,146,60,0.4); background: linear-gradient(180deg, rgba(200,146,60,0.09), transparent); }
+    .seg-card .badge { font-family: var(--mono); font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .seg-card .badge .t2 { color: var(--muted); }
+    .seg-card h3 { font-family: var(--serif); font-size: 44px; font-weight: 500; margin: 16px 0 6px; }
+    .seg-card .who { font-size: 21px; color: var(--muted); margin-bottom: 24px; }
+    .seg-card ul { margin: 0; padding: 0; list-style: none; }
+    .seg-card li { font-size: 21px; color: var(--text); line-height: 1.4; padding: 15px 0; border-top: 1px solid var(--line); display: flex; gap: 14px; }
+    .seg-card li:first-child { border-top: 0; }
+    .seg-card li .ic { color: var(--gold); flex-shrink: 0; }
+    .seg-card .foot { margin-top: auto; padding-top: 28px; font-size: 19px; color: var(--muted); line-height: 1.45; }
+    .seg-card .foot b { color: var(--text); font-weight: 600; }
+
+    /* ===== DONUT ===== */
+    .donut-wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; margin-top: 24px; flex: 1; min-height: 0; align-items: center; }
+    .donut { position: relative; width: 440px; height: 440px; margin: 0 auto; }
+    .donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .donut .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .donut .center .cv { font-family: var(--serif); font-size: 92px; font-weight: 600; color: var(--sage); line-height: 1; }
+    .donut .center .cl { font-family: var(--mono); font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+    .donut-side { display: flex; flex-direction: column; gap: 2px; }
+    .legend-row { display: flex; align-items: center; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .legend-row:last-child { border-bottom: 0; }
+    .legend-row .sw { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+    .legend-row .ln { font-size: 22px; color: var(--text); flex: 1; }
+    .legend-row .lp { font-family: var(--mono); font-size: 22px; color: var(--muted); }
+    .legend-row.hi .ln { color: var(--sage); font-weight: 600; }
+    .legend-row.hi .lp { color: var(--sage); }
+    .donut-foot { margin-top: 22px; font-size: 21px; color: var(--muted); line-height: 1.5; }
+    .donut-foot b { color: var(--text); font-weight: 600; }
+
+    /* ===== QR FINAL ===== */
+    .qr-final { display: flex; gap: 56px; justify-content: center; margin-top: 52px; flex: 1; min-height: 0; align-items: center; }
+    .qr-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 40px; width: 400px; text-align: center; }
+    .qr-card.core { border-color: rgba(200,146,60,0.4); }
+    .qr-card .qimg { width: 300px; height: 300px; background: #fff; border-radius: 8px; margin: 0 auto; display: block; padding: 12px; box-sizing: border-box; }
+    .qr-card .qt { font-family: var(--serif); font-size: 34px; font-weight: 500; margin-top: 30px; }
+    .qr-card .qh { font-family: var(--mono); font-size: 18px; color: var(--gold); margin-top: 10px; word-break: break-all; }
   </style>
 </head>
 
@@ -292,7 +333,7 @@
       <div class="corner tl">CAFECTO · EST. 2026</div>
       <div class="corner tr">PITCH DECK · INVERSORES</div>
       <div class="corner bl">UCEMA · COMERCIO ELECTRÓNICO</div>
-      <div class="corner br">01 / 13</div>
+      <div class="corner br">01 / 14</div>
       <div class="cover">
         <div style="font-family:var(--mono);font-size:14px;letter-spacing:0.5em;color:var(--gold);margin-bottom:44px;">— COFFEE × FUNCTION —</div>
         <h1>CAFECTO</h1>
@@ -514,18 +555,58 @@
       <div class="footstrip"><span>06</span><span>Mismo grano · Tres funciones</span></div>
     </section>
 
-    <!-- 07 MODELO DE NEGOCIO -->
-    <section data-screen-label="07 Modelo de Negocio">
+    <!-- 07 SEGMENTO B2C / B2B -->
+    <section data-screen-label="07 Segmento">
       <div class="topbar">
         <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
-        <div class="chapter">06 <b>· Modelo de Negocio</b></div>
+        <div class="chapter">06 <b>· A quién le vendemos</b></div>
       </div>
       <div class="head-row">
         <div>
-          <div class="eyebrow" style="margin-bottom:18px;">Cómo ganamos plata</div>
-          <h2 class="h-section">D2C puro: todo el<br>margen es <span class="gold ital">nuestro</span>.</h2>
+          <div class="eyebrow" style="margin-bottom:18px;">A quién le vendemos</div>
+          <h2 class="h-section">Dos motores: uno para hoy,<br>uno para <span class="gold ital">escalar</span>.</h2>
         </div>
-        <div class="lead">Vendemos directo desde web propia. Sin góndola, sin distribuidor, sin markup de retail. Y el café es consumible: se termina, se vuelve a comprar.</div>
+        <div class="lead">El corazón es la venta directa al consumidor. El B2B nos suma volumen y previsibilidad sin gastar en pauta.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-card core">
+          <div class="badge">B2C <span class="t2">· Núcleo</span></div>
+          <h3>Directo al consumidor</h3>
+          <div class="who">Tomás y su mundo — 25-40, ABC1, wellness, urbano.</div>
+          <ul>
+            <li><span class="ic">→</span> Tienda propia D2C, sin intermediarios</li>
+            <li><span class="ic">→</span> Suscripción mensual · recompra ≈3×/año</li>
+            <li><span class="ic">→</span> Combos que suben el ticket 35%</li>
+          </ul>
+          <div class="foot">El <b>100% de la operación hoy</b>. Margen completo y marca propia.</div>
+        </div>
+        <div class="seg-card">
+          <div class="badge">B2B <span class="t2">· Expansión</span></div>
+          <h3>Venta por volumen</h3>
+          <div class="who">Empresas, gimnasios y cafeterías de especialidad.</div>
+          <ul>
+            <li><span class="ic">→</span> Corporativo wellness — café para oficinas</li>
+            <li><span class="ic">→</span> Gimnasios y estudios de yoga / pilates</li>
+            <li><span class="ic">→</span> Cafeterías: wholesale del blend</li>
+          </ul>
+          <div class="foot">Tickets grandes, <b>sin costo de adquisición</b>. Entra en el Año 1.</div>
+        </div>
+      </div>
+      <div class="footstrip"><span>07</span><span>B2C hoy · B2B para escalar</span></div>
+    </section>
+
+    <!-- 08 EL NEGOCIO (MODELO + UNIT ECONOMICS) -->
+    <section data-screen-label="08 El Negocio">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">07 <b>· El Negocio</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">El negocio</div>
+          <h2 class="h-section">Cada cliente vale <span class="gold">24×</span><br>lo que cuesta traerlo.</h2>
+        </div>
+        <div class="lead">Venta directa desde web propia, sin góndola ni markup de retail. Y el café se termina: se vuelve a comprar todos los meses.</div>
       </div>
       <div class="stat-row">
         <div class="stat">
@@ -544,98 +625,52 @@
           <div class="d">3 compras/año</div>
         </div>
         <div class="stat">
-          <div class="v">≈3<small>×/año</small></div>
-          <div class="k">Frecuencia de recompra</div>
-          <div class="d">Consumo diario</div>
+          <div class="v">24<small>×</small></div>
+          <div class="k">LTV / CAC</div>
+          <div class="d">Sano &gt; 3×</div>
         </div>
       </div>
-      <div class="model-note">El negocio no vive de la primera venta: vive de la <b>recompra</b>. Un cliente satisfecho vuelve cada mes, y sobre esa base construimos <b>suscripciones</b> — ingreso predecible y recurrente.</div>
-      <div class="footstrip"><span>07</span><span>Venta directa · Consumo recurrente</span></div>
+      <div class="model-note">Con un CAC de <b>$4.346</b> y consumo diario, el cliente se paga en la <b>primera compra</b> y deja <b>24× en el año</b>. Sobre esa recompra montamos <b>suscripciones</b>: ingreso predecible y recurrente.</div>
+      <div class="footstrip"><span>08</span><span>Directo al consumidor · Recompra recurrente</span></div>
     </section>
 
-    <!-- 08 MOTOR FINANCIERO (BOOTSTRAPPED) -->
-    <section data-screen-label="08 Rentabilidad">
+    <!-- 09 LA CUENTA (COSTOS) -->
+    <section data-screen-label="09 La Cuenta">
       <div class="topbar">
         <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
-        <div class="chapter">07 <b>· Unit Economics</b></div>
+        <div class="chapter">08 <b>· La Cuenta</b></div>
       </div>
       <div class="head-row">
         <div>
-          <div class="eyebrow" style="margin-bottom:18px;">El motor financiero</div>
-          <h2 class="h-section">Rentable desde el primer mes.<br>Sin levantar <span class="gold ital">un peso</span>.</h2>
+          <div class="eyebrow" style="margin-bottom:18px;">La cuenta</div>
+          <h2 class="h-section">De cada $100, nos <span class="gold ital">quedan $23</span>.</h2>
         </div>
-        <div class="lead">Modelo financiero del Mes 1 sobre 26 pedidos. El margen cubre los costos fijos con margen de sobra.</div>
+        <div class="lead">Cómo se reparte cada $100 de venta en el Mes 1. Después de producto, logística, marketing y estructura, el margen operativo sobra.</div>
       </div>
-      <div class="fin-wrap">
-        <div class="stack-bar">
-          <div class="stack-seg rev" style="height:118px;"><span class="sl">Venta neta</span><span class="sv">$877.850 · 100%</span></div>
-          <div class="stack-seg cogs" style="height:64px;"><span class="sl">(–) Costo del producto</span><span class="sv">35,4%</span></div>
-          <div class="stack-seg gp" style="height:96px;"><span class="sl">Margen bruto</span><span class="sv">$566.850 · 64,6%</span></div>
-          <div class="stack-seg opex" style="height:74px;"><span class="sl">(–) Logística + pago + mkt + G&A</span><span class="sv">41,3%</span></div>
-          <div class="stack-seg ebitda" style="height:96px;"><span class="sl">EBITDA</span><span class="sv">$204.246 · 23,3%</span></div>
+      <div class="donut-wrap">
+        <div class="donut">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#1E1E1E" stroke-width="38"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#5A8A68" stroke-width="38" pathLength="100" stroke-dasharray="23 77" stroke-dashoffset="0"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#6B5D4F" stroke-width="38" pathLength="100" stroke-dasharray="35 65" stroke-dashoffset="-23"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#45443F" stroke-width="38" pathLength="100" stroke-dasharray="16 84" stroke-dashoffset="-58"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#C87830" stroke-width="38" pathLength="100" stroke-dasharray="13 87" stroke-dashoffset="-74"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#C08878" stroke-width="38" pathLength="100" stroke-dasharray="10 90" stroke-dashoffset="-87"></circle>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#7A7470" stroke-width="38" pathLength="100" stroke-dasharray="3 97" stroke-dashoffset="-97"></circle>
+          </svg>
+          <div class="center"><div class="cv">$23</div><div class="cl">Nos queda · EBITDA</div></div>
         </div>
-        <div class="fin-stats">
-          <div class="fin-stat">
-            <div class="v good">23,3%</div>
-            <div class="k">de <b>EBITDA</b> ya en el Mes 1</div>
-          </div>
-          <div class="fin-stat">
-            <div class="v">13,8</div>
-            <div class="k">pedidos para <b>break-even</b> — lo cubrimos <b>1,88×</b></div>
-          </div>
-          <div class="fin-stat">
-            <div class="v gold" style="color:var(--gold);">$0</div>
-            <div class="k">de <b>capital externo</b> necesario para operar</div>
-          </div>
-        </div>
-      </div>
-      <div class="footstrip"><span>08</span><span class="source-note">Modelo financiero · <b>26 pedidos</b> · Mes 1</span></div>
-    </section>
-
-    <!-- 09 POR QUE ESCALA -->
-    <section data-screen-label="09 Escalabilidad">
-      <div class="topbar">
-        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
-        <div class="chapter">08 <b>· Escalabilidad</b></div>
-      </div>
-      <div class="head-row">
-        <div>
-          <div class="eyebrow" style="margin-bottom:18px;">Por qué escala</div>
-          <h2 class="h-section">Cada cliente vale <span class="gold">24×</span><br>lo que cuesta traerlo.</h2>
-        </div>
-        <div class="lead">A más volumen, más margen: los costos fijos se diluyen y el EBITDA sube del 23% al 43% en seis meses.</div>
-      </div>
-      <div class="scale-wrap">
-        <div class="ltv-block">
-          <div class="ltv-card hero">
-            <div class="k">LTV / CAC</div>
-            <div class="v">24×</div>
-          </div>
-          <div class="ltv-card">
-            <div class="k">Costo de adquisición (CAC)</div>
-            <div class="v" style="font-size:38px;">$4.346</div>
-          </div>
-          <div class="ltv-card">
-            <div class="k">Valor de vida del cliente (LTV)</div>
-            <div class="v" style="font-size:38px;">$104.424</div>
-          </div>
-        </div>
-        <div class="proj-bars">
-          <div class="proj-col">
-            <div class="bar" style="height:38%;"><div class="pct">23%</div></div>
-            <div class="cap"><div class="m">Mes 1</div><div class="o">26 pedidos</div></div>
-          </div>
-          <div class="proj-col">
-            <div class="bar" style="height:62%;"><div class="pct">36%</div></div>
-            <div class="cap"><div class="m">Mes 3</div><div class="o">54 pedidos</div></div>
-          </div>
-          <div class="proj-col">
-            <div class="bar" style="height:92%;"><div class="pct">43%</div></div>
-            <div class="cap"><div class="m">Mes 6</div><div class="o">126 pedidos</div></div>
-          </div>
+        <div class="donut-side">
+          <div class="legend-row"><span class="sw" style="background:#6B5D4F;"></span><span class="ln">Producto (insumos)</span><span class="lp">$35</span></div>
+          <div class="legend-row"><span class="sw" style="background:#45443F;"></span><span class="ln">Estructura y G&amp;A</span><span class="lp">$16</span></div>
+          <div class="legend-row"><span class="sw" style="background:#C87830;"></span><span class="ln">Marketing</span><span class="lp">$13</span></div>
+          <div class="legend-row"><span class="sw" style="background:#C08878;"></span><span class="ln">Logística</span><span class="lp">$10</span></div>
+          <div class="legend-row"><span class="sw" style="background:#7A7470;"></span><span class="ln">Medios de pago</span><span class="lp">$3</span></div>
+          <div class="legend-row hi"><span class="sw" style="background:#5A8A68;"></span><span class="ln">Nos queda (EBITDA)</span><span class="lp">$23</span></div>
+          <div class="donut-foot"><b>Break-even</b> en 13,8 pedidos — lo cubrimos 1,88×.<br><b>$0 de capital externo</b>: el margen financia el crecimiento.</div>
         </div>
       </div>
-      <div class="footstrip"><span>09</span><span class="source-note">Margen EBITDA proyectado · 416 pedidos en 6 meses</span></div>
+      <div class="footstrip"><span>09</span><span class="source-note">De cada $100 de venta · Mes 1 · <b>26 pedidos</b></span></div>
     </section>
 
     <!-- 10 COMPETENCIA -->
@@ -796,10 +831,40 @@
         </div>
       </div>
       <div class="closing">
-        <div class="quote">"El café que ya tomás, <span class="b">ahora trabaja para vos."</span></div>
+        <div class="quote">Un mercado creciendo, un modelo rentable, <span class="b">un equipo para ejecutarlo.</span></div>
+      </div>
+      <div class="footstrip"><span>13</span><span>De hoy a la escala</span></div>
+    </section>
+
+    <!-- 14 CIERRE + QR -->
+    <section data-screen-label="14 Cierre">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Pitch Deck</div>
+        <div class="chapter">13 <b>· Probalo</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Probalo vos mismo</div>
+          <h2 class="h-section">El café que ya tomás,<br>ahora <span class="gold ital">trabaja para vos</span>.</h2>
+        </div>
+        <div class="lead">La tienda está online y funcionando. Escaneá, entrá y pedí el tuyo.</div>
+      </div>
+      <div class="qr-final">
+        <div class="qr-card core">
+          <img class="qimg" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&amp;margin=10&amp;data=https%3A%2F%2Fcafe-alchemy-web.lovable.app" alt="QR tienda CAFECTO">
+          <div class="qt">Comprá online</div>
+          <div class="qh">cafe-alchemy-web.lovable.app</div>
+        </div>
+        <div class="qr-card">
+          <img class="qimg" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&amp;margin=10&amp;data=https%3A%2F%2Finstagram.com%2Fcafecto" alt="QR Instagram CAFECTO">
+          <div class="qt">Seguinos</div>
+          <div class="qh">@cafecto</div>
+        </div>
+      </div>
+      <div class="closing" style="margin-top:38px;">
         <div class="signature">CAFECTO <span class="dotsep">·</span> Comercio Electrónico <span class="dotsep">·</span> <b>UCEMA 2026</b></div>
       </div>
-      <div class="footstrip"><span>13</span><span>Gracias</span></div>
+      <div class="footstrip"><span>14</span><span>Gracias</span></div>
     </section>
 
   </deck-stage>
