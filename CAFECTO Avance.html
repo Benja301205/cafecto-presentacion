@@ -1,0 +1,4047 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>CAFECTO — Presentación Final · UCEMA 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #0E0E0E;
+      --surface: #161616;
+      --surface-2: #1C1C1C;
+      --line: rgba(255, 255, 255, 0.07);
+      --line-2: rgba(255, 255, 255, 0.12);
+      --gold: #C8923C;
+      --gold-soft: #E0B25C;
+      --text: #E8E4DF;
+      --muted: #7A7470;
+      --rose: #C08878;
+      --sage: #5A8A68;
+      --amber: #C87830;
+      --good: #6FA56B;
+      --warn: #D4A24A;
+      --serif: "Playfair Display", serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+    }
+
+    deck-stage {
+      background: #000;
+    }
+
+    section {
+      box-sizing: border-box;
+      width: 1920px;
+      height: 1080px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 96px 120px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 50% 30%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .topbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .topbar .brand .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .topbar .chapter {
+      color: var(--muted);
+    }
+
+    .topbar .chapter b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 16px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .h-display {
+      font-family: var(--serif);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
+      font-size: 120px;
+    }
+
+    .h-section {
+      font-family: var(--serif);
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      line-height: 1.02;
+      font-size: 84px;
+    }
+
+    .h-sub {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 36px;
+      line-height: 1.25;
+    }
+
+    .lead {
+      font-family: var(--sans);
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .num-mono {
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hr-gold {
+      width: 160px;
+      height: 2px;
+      background: var(--gold);
+      border: 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .card.pad-l {
+      padding: 40px 44px;
+    }
+
+    .footstrip {
+      position: absolute;
+      left: 120px;
+      right: 120px;
+      bottom: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ===== PORTADA ===== */
+    .s-portada {
+      padding: 0;
+      background: radial-gradient(60% 50% at 50% 50%, rgba(200, 146, 60, 0.10) 0%, transparent 60%), var(--bg);
+    }
+
+    .s-portada .cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .s-portada h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      font-size: 280px;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .s-portada h1 .ampers {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .s-portada .sub {
+      margin-top: 36px;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      max-width: 1300px;
+    }
+
+    .s-portada .sub .you {
+      color: var(--gold);
+      font-style: italic;
+      font-family: var(--serif);
+      font-weight: 500;
+    }
+
+    .s-portada .gold-rule {
+      width: 140px;
+      height: 2px;
+      background: var(--gold);
+      margin: 48px auto 0;
+    }
+
+    .s-portada .ucema {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 18px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+    }
+
+    .s-portada .ucema b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .s-portada .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 120px 120px;
+      background-position: 60px 60px;
+      mask-image: radial-gradient(60% 60% at 50% 50%, #000 35%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .s-portada .corner {
+      position: absolute;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+    }
+
+    .s-portada .corner.tl {
+      top: 60px;
+      left: 120px;
+    }
+
+    .s-portada .corner.tr {
+      top: 60px;
+      right: 120px;
+    }
+
+    .s-portada .corner.bl {
+      bottom: 60px;
+      left: 120px;
+    }
+
+    .s-portada .corner.br {
+      bottom: 60px;
+      right: 120px;
+    }
+
+    /* ===== SHARED LAYOUT ===== */
+    .head-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+      margin-top: 18px;
+    }
+
+    .head-row .h-section {
+      flex: 1;
+    }
+
+    .head-row .lead {
+      max-width: 640px;
+    }
+
+    /* ===== PRODUCTO CARDS ===== */
+    .product-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-card .top-bar {
+      height: 3px;
+      background: var(--rose);
+    }
+
+    .product-card.sage .top-bar {
+      background: var(--sage);
+    }
+
+    .product-card.amber .top-bar {
+      background: var(--amber);
+    }
+
+    .product-card .img {
+      height: 380px;
+      background: #0A0A0A;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .product-card .body {
+      padding: 36px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      flex: 1;
+    }
+
+    .product-card .name {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .product-card .ingr {
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+    }
+
+    .product-card.sage .ingr {
+      color: var(--sage);
+    }
+
+    .product-card.amber .ingr {
+      color: var(--amber);
+    }
+
+    .product-card .price {
+      font-family: var(--serif);
+      font-size: 44px;
+      color: var(--gold);
+      font-weight: 500;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .product-card .benef {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .product-card .benef .chip {
+      border: 1px solid var(--line-2);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .product-card .footer-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding: 18px 40px;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .product-card .footer-line b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* palette strip */
+    .palette-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .palette-strip .swatch {
+      height: 72px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 14px 24px;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.78);
+      font-weight: 600;
+    }
+
+    .palette-strip .swatch.rose {
+      background: var(--rose);
+    }
+
+    .palette-strip .swatch.sage {
+      background: var(--sage);
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .palette-strip .swatch.amber {
+      background: var(--amber);
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .palette-strip .swatch .mono {
+      font-family: var(--mono);
+      font-weight: 500;
+      letter-spacing: 0.16em;
+    }
+
+    /* ===== BUYER PERSONA y JTBD (slide 03) ===== */
+    .bp-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .bp-block {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .bp-name {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .bp-meta {
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .bp-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bp-chip {
+      border: 1px solid var(--line-2);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .bp-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold);
+      line-height: 1.45;
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+    }
+
+    .bp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .bp-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 22px;
+    }
+
+    .bp-box .bx-hd {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .bp-box.pains .bx-hd {
+      color: var(--rose);
+    }
+
+    .bp-box.gains .bx-hd {
+      color: var(--good);
+    }
+
+    .bp-box ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bp-box li {
+      font-size: 15px;
+      color: var(--text);
+      display: flex;
+      gap: 8px;
+      line-height: 1.35;
+    }
+
+    .bp-box li::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .bp-box.pains li::before {
+      background: var(--rose);
+    }
+
+    .bp-box.gains li::before {
+      background: var(--good);
+    }
+
+    .jtbd-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .jtbd-label {
+      font-size: 14px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .jtbd-title {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .jtbd-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .jtbd-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .jtbd-card .jc-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .jtbd-card .jc-when {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .jtbd-card .jc-want {
+      font-size: 19px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .jtbd-card .jc-so {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .jtbd-card .jc-want b {
+      color: var(--gold);
+    }
+
+    .buyer-duo-layout {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 34px;
+      margin-top: 34px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .buyer-photo-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      min-height: 0;
+    }
+
+    .buyer-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: saturate(0.92) contrast(0.96) brightness(0.86);
+    }
+
+    .buyer-photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(14, 14, 14, 0.08) 0%, rgba(14, 14, 14, 0.58) 100%);
+      pointer-events: none;
+    }
+
+    .buyer-photo-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 26px;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .buyer-photo-caption .caption-title {
+      font-family: var(--serif);
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    .buyer-photo-caption .caption-kicker {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .buyer-photo-caption .caption-meta {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(232, 228, 223, 0.72);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .buyer-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .persona-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .persona-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .persona-card .pc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+    }
+
+    .persona-card .pc-name {
+      font-family: var(--serif);
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    .persona-card .pc-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .persona-card .pc-product {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .persona-card .pc-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.24;
+    }
+
+    .persona-card .pc-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .pc-line {
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .persona-card.tomas {
+      border-top: 3px solid var(--sage);
+    }
+
+    .persona-card.sandra {
+      border-top: 3px solid var(--rose);
+    }
+
+    .buyer-jtbd-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: auto;
+    }
+
+    .buyer-jtbd {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 118px;
+    }
+
+    .buyer-jtbd .bj-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .buyer-jtbd .bj-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    .buyer-jtbd .bj-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.28;
+    }
+
+    .buyer-jtbd .bj-product {
+      margin-top: auto;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* ===== COSTOS (slide 04) ===== */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .be-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .be-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .be-card .bc-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .be-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .be-table tr {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .be-table tr:last-child {
+      border-bottom: 0;
+    }
+
+    .be-table td {
+      padding: 9px 0;
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .be-table td.lbl {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .be-table td.val {
+      text-align: right;
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    .be-table tr.hi td {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .proj-mini table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .proj-mini th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .proj-mini th:not(:first-child) {
+      text-align: right;
+    }
+
+    .proj-mini td {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .proj-mini td:not(:first-child) {
+      text-align: right;
+      font-family: var(--mono);
+    }
+
+    .proj-mini .tot-row td {
+      border-bottom: 0;
+      color: var(--gold);
+      font-weight: 700;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-2);
+    }
+
+    /* ===== TP8 LOGÍSTICA ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 48px;
+      margin-top: 72px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .check-list .item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--gold);
+      padding: 22px 26px;
+      border-radius: 4px;
+    }
+
+    .check-list .item .ico {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(200, 146, 60, 0.12);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .check-list .item .it-title {
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .check-list .item .it-body {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .check-list .item .it-body b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .pnl {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pnl-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .pnl-title .t {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .pnl-title .m {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .pnl table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+    }
+
+    .pnl tr {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pnl tr:last-child {
+      border-bottom: 0;
+    }
+
+    .pnl td {
+      padding: 18px 0;
+      font-size: 20px;
+      color: var(--text);
+    }
+
+    .pnl td.label {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .pnl td.amt {
+      text-align: right;
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .pnl td.pct {
+      text-align: right;
+      width: 140px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 16px;
+    }
+
+    .pnl tr.pos td.amt {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .pnl tr.pos td.pct {
+      color: var(--gold-soft);
+    }
+
+    .pnl tr.tot td {
+      padding: 24px 0 8px;
+      font-size: 22px;
+    }
+
+    .pnl tr.tot td.label {
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .pnl tr.tot td.amt {
+      font-size: 28px;
+    }
+
+    .pnl .legend {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* ===== TP9 UX ===== */
+    .ux-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 64px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .ux-block {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ux-block h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 34px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .ux-block .meta {
+      color: var(--muted);
+      font-size: 16px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .heur {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+      flex: 1;
+    }
+
+    .heur .pane {
+      border-radius: 6px;
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+      border: 1px solid var(--line);
+    }
+
+    .heur .pane.ok {
+      background: rgba(111, 165, 107, 0.08);
+      border-color: rgba(111, 165, 107, 0.25);
+    }
+
+    .heur .pane.warn {
+      background: rgba(212, 162, 74, 0.07);
+      border-color: rgba(212, 162, 74, 0.28);
+    }
+
+    .heur .pane .lab {
+      font-size: 14px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .heur .pane.ok .lab {
+      color: var(--good);
+    }
+
+    .heur .pane.warn .lab {
+      color: var(--warn);
+    }
+
+    .heur .pane ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .heur .pane li {
+      font-family: var(--sans);
+      font-size: 17px;
+      color: var(--text);
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .heur .pane li .h {
+      font-family: var(--mono);
+      color: inherit;
+      width: 36px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .heur .pane.ok li .h {
+      color: var(--good);
+    }
+
+    .heur .pane.warn li .h {
+      color: var(--warn);
+    }
+
+    .heur .pane li .t {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .ux-block .footnote {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .ux-block .footnote b {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .empathy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+      flex: 1;
+    }
+
+    .empathy .q {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .empathy .q .hd {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .empathy .q .hd .e {
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .empathy .q ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .empathy .q li {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.4;
+      display: flex;
+      gap: 8px;
+    }
+
+    .empathy .q li::before {
+      content: "";
+      display: inline-block;
+      flex-shrink: 0;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 8px;
+    }
+
+    /* ===== MKT ONLINE (slide 07) ===== */
+    .mkt-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .mkt-col {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mkt-col .mc-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mkt-col .mc-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .mkt-col .mc-title {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .mkt-col .mc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mkt-col .mc-list li {
+      font-size: 17px;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      line-height: 1.4;
+    }
+
+    .mkt-col .mc-list li::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .mkt-col .mc-list li b {
+      color: var(--text);
+    }
+
+    .mkt-col .mc-kpi {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mkt-col .mc-kpi b {
+      color: var(--gold);
+    }
+
+    .week-compact {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .day-sm {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 14px 16px;
+      position: relative;
+    }
+
+    .day-sm .ds-dow {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .day-sm .ds-date {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .day-sm .ds-type {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .day-sm .ds-what {
+      font-size: 13px;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .day-sm .pdot-sm {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .day-sm.rose .pdot-sm {
+      background: var(--rose);
+    }
+
+    .day-sm.sage .pdot-sm {
+      background: var(--sage);
+    }
+
+    .day-sm.amber .pdot-sm {
+      background: var(--amber);
+    }
+
+    .day-sm.mixed .pdot-sm {
+      background: linear-gradient(135deg, var(--rose), var(--sage));
+    }
+
+    .mkt-footer {
+      margin-top: 16px;
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .mkt-footer b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .mkt-footer .sep {
+      color: var(--gold);
+    }
+
+    /* ===== PRECIOS Y CONFIANZA (slide 08) ===== */
+    .price-split {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .browser {
+      background: #0A0A0A;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .browser .chrome {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: #111;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .browser .dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .browser .dots i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: block;
+      background: #3a3a3a;
+    }
+
+    .browser .url {
+      flex: 1;
+      background: #1a1a1a;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .browser .url .lock {
+      color: var(--gold);
+    }
+
+    .browser .url .path {
+      color: var(--text);
+    }
+
+    .browser .badge-ok {
+      background: rgba(111, 165, 107, 0.18);
+      border: 1px solid rgba(111, 165, 107, 0.4);
+      color: var(--good);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .browser .view {
+      flex: 1;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(80% 60% at 50% 0%, rgba(200, 146, 60, 0.06), transparent 70%), #0A0A0A;
+      overflow: hidden;
+    }
+
+    .browser .view .vhead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .browser .view .vhead h4 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 30px;
+    }
+
+    .browser .view .vhead .sub {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .browser .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .browser .pcard {
+      background: #141414;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .browser .pcard .accent {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: var(--rose);
+    }
+
+    .browser .pcard.sage .accent {
+      background: var(--sage);
+    }
+
+    .browser .pcard.amber .accent {
+      background: var(--amber);
+    }
+
+    .browser .pcard.combo-g .accent {
+      background: linear-gradient(180deg, var(--rose), var(--sage));
+    }
+
+    .browser .pcard.combo-t .accent {
+      background: linear-gradient(180deg, var(--rose), var(--sage) 50%, var(--amber));
+    }
+
+    .browser .pcard .pname {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .browser .pcard .pin {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .browser .pcard .pin b {
+      font-weight: 600;
+    }
+
+    .browser .pcard.rose .pin b {
+      color: var(--rose);
+    }
+
+    .browser .pcard.sage .pin b {
+      color: var(--sage);
+    }
+
+    .browser .pcard.amber .pin b {
+      color: var(--amber);
+    }
+
+    .browser .pcard.combo-g .pin b,
+    .browser .pcard.combo-t .pin b {
+      color: var(--gold);
+    }
+
+    .browser .pcard .pprice {
+      font-family: var(--serif);
+      font-size: 30px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-top: auto;
+    }
+
+    .browser .pcard .pold {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-top: 4px;
+    }
+
+    .browser .pcard .pbtn {
+      text-align: center;
+      border: 1px solid var(--line-2);
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .browser .pcard.feat .pbtn {
+      background: var(--gold);
+      color: #0a0a0a;
+      border-color: var(--gold);
+    }
+
+    .browser .pcard.feat {
+      border-color: rgba(200, 146, 60, 0.4);
+    }
+
+    .browser .combos-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .strategy-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .strategy-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 22px 26px;
+    }
+
+    .strategy-card .sc-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .strategy-card .sc-title {
+      font-size: 20px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .strategy-card .sc-body {
+      font-size: 16px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .strategy-card .sc-body b {
+      color: var(--text);
+    }
+
+    /* ===== MEDIOS DE PAGO (slide 09) ===== */
+    .pay-section {
+      margin-top: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pay-table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .pay-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .pay-table thead tr {
+      border-bottom: 1px solid var(--line-2);
+    }
+
+    .pay-table th {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      font-family: var(--sans);
+    }
+
+    .pay-table th:nth-child(2),
+    .pay-table th:nth-child(3) {
+      text-align: right;
+    }
+
+    .pay-table tbody tr {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pay-table tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    .pay-table td {
+      padding: 18px 24px;
+      font-size: 18px;
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .pay-table td.canal {
+      font-weight: 600;
+    }
+
+    .pay-table td.com {
+      text-align: right;
+      font-family: var(--mono);
+      color: var(--gold);
+    }
+
+    .pay-table td.mix {
+      text-align: right;
+      font-family: var(--mono);
+      color: var(--muted);
+    }
+
+    .pay-table td.just {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .pay-decision {
+      background: rgba(200, 146, 60, 0.07);
+      border: 1px solid rgba(200, 146, 60, 0.3);
+      border-radius: 8px;
+      padding: 22px 32px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .pay-decision .pd-icon {
+      color: var(--gold);
+      font-size: 22px;
+      flex-shrink: 0;
+      font-family: var(--mono);
+    }
+
+    .pay-decision .pd-text {
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .pay-decision .pd-text b {
+      color: var(--gold);
+    }
+
+    /* ===== ACTIVOS DIGITALES (slide 10) ===== */
+    .assets-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .progress-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .progress-card .head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .progress-card .head .label {
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .progress-card .pct {
+      font-family: var(--serif);
+      font-size: 120px;
+      line-height: 1;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .progress-card .pct sup {
+      font-size: 40px;
+      color: var(--muted);
+      font-family: var(--sans);
+      margin-left: 6px;
+      font-weight: 300;
+    }
+
+    .progress-card .bar-wrap {
+      margin-top: 20px;
+    }
+
+    .progress-card .bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-card .bar .fill {
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, #A8762C 0%, var(--gold) 60%, var(--gold-soft) 100%);
+    }
+
+    .progress-card .bar-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .progress-card .platform {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-card .platform .p-t {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .progress-card .platform .p-m {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .status-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .status-card h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+
+    .status-card .sub {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .status-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 14px;
+      flex: 1;
+    }
+
+    .status-col-hd {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2px;
+    }
+
+    .status-col-hd.ok {
+      color: var(--good);
+    }
+
+    .status-col-hd.pend {
+      color: var(--warn);
+    }
+
+    .status-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .status-list .row {
+      display: grid;
+      grid-template-columns: 20px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .status-list .row:last-child {
+      border-bottom: 0;
+    }
+
+    .status-list .row .dot-st {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--good);
+      border: 2px solid rgba(111, 165, 107, 0.25);
+      box-sizing: border-box;
+    }
+
+    .status-list .row.wip .dot-st {
+      background: transparent;
+      border-color: var(--gold);
+      position: relative;
+    }
+
+    .status-list .row.wip .dot-st::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .status-list .row .name {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .status-list .row .st {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--good);
+    }
+
+    .status-list .row.wip .st {
+      color: var(--gold);
+    }
+
+    .vid-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vid-col-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    .vid-col-sub {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .vid-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .vidcard-sm {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vidcard-sm .preview-sm {
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      min-height: 0;
+      background: #0A0A0A;
+    }
+
+    .vidcard-sm .preview-sm video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vidcard-sm .preview-sm.horiz video {
+      object-fit: contain;
+    }
+
+    .vidcard-sm .preview-sm .ov-sm {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .vidcard-sm .preview-sm .ov-sm span {
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--text);
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .vidcard-sm .vft {
+      border-top: 1px solid var(--line);
+      padding: 7px 12px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .vidcard-sm .vft b {
+      color: var(--text);
+    }
+
+    .vid-stats {
+      margin-top: 16px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .vid-stats b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .vid-stats .sep {
+      color: var(--gold);
+    }
+
+    /* ===== CIERRE / TIMELINE ===== */
+    .timeline-wrap {
+      margin-top: 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 24px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 14px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--line) 0%, var(--gold) 50%, var(--line) 100%);
+    }
+
+    .tnode {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 32px;
+      text-align: center;
+    }
+
+    .tnode .ring {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tnode .ring i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .tnode.future .ring {
+      border-color: var(--line-2);
+    }
+
+    .tnode.future .ring i {
+      background: var(--muted);
+    }
+
+    .tnode.wip .ring i {
+      background: transparent;
+      border: 2px solid var(--gold);
+      width: 8px;
+      height: 8px;
+    }
+
+    .tnode .stage-l {
+      margin-top: 18px;
+      font-size: 13px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .tnode.wip .stage-l {
+      color: var(--gold-soft);
+    }
+
+    .tnode.future .stage-l {
+      color: var(--muted);
+    }
+
+    .tnode .stage-d {
+      margin-top: 8px;
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .tnode ul {
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .tnode li {
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .tnode.future li {
+      color: var(--muted);
+    }
+
+    .closing {
+      margin-top: auto;
+      padding-top: 60px;
+      text-align: center;
+    }
+
+    .closing .quote {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 64px;
+      line-height: 1.1;
+      letter-spacing: -0.005em;
+      font-weight: 500;
+    }
+
+    .closing .quote .b {
+      color: var(--gold-soft);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .closing .signature {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .closing .signature b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .dotsep {
+      color: var(--gold);
+      margin: 0 12px;
+    }
+
+    /* ===== P&L VISUAL STATS (slide 04) ===== */
+    .pl-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .pl-stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pl-stat .pvs-label {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .pl-stat .pvs-value {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .pl-stat .pvs-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .pl-stat.highlight {
+      border-color: rgba(200, 146, 60, 0.35);
+      background: rgba(200, 146, 60, 0.05);
+    }
+
+    .pl-stat.highlight .pvs-value {
+      color: var(--gold);
+    }
+
+    .pl-funnel {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pl-funnel .pf-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .pl-funnel .pf-label {
+      color: var(--muted);
+      width: 180px;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .pl-funnel .pf-bar {
+      height: 22px;
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+
+    .pl-funnel .pf-pct {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+
+    /* ===== ALL 10 HEURISTICS (slide 06) ===== */
+    .heur-10 {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+      flex: 1;
+    }
+
+    .heur-row {
+      display: grid;
+      grid-template-columns: 44px 18px 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 5px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .heur-row.ok {
+      border-color: rgba(111, 165, 107, 0.22);
+      background: rgba(111, 165, 107, 0.05);
+    }
+
+    .heur-row.warn {
+      border-color: rgba(212, 162, 74, 0.22);
+      background: rgba(212, 162, 74, 0.04);
+    }
+
+    .heur-row .hr-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .heur-row.ok .hr-num { color: var(--good); }
+    .heur-row.warn .hr-num { color: var(--warn); }
+
+    .heur-row .hr-ico {
+      font-size: 13px;
+    }
+
+    .heur-row .hr-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .heur-row .hr-action {
+      display: block;
+      font-size: 12px;
+      color: var(--warn);
+      margin-top: 2px;
+    }
+
+    /* ===== QR BLOCK INSIDE UX SLIDE ===== */
+    .qr-block {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .qr-block img {
+      width: 110px;
+      height: 110px;
+      border-radius: 6px;
+      background: #fff;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .qr-block .qb-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .qr-block .qb-kicker {
+      font-size: 12px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .qr-block .qb-title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    .qr-block .qb-url {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ===== COST BAR (slide 04) ===== */
+    .cost-bar {
+      display: flex;
+      width: 100%;
+      height: 56px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin-top: 20px;
+    }
+
+    .cost-bar .seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.78);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .cost-bar .seg.cogs {
+      background: var(--rose);
+    }
+
+    .cost-bar .seg.log {
+      background: var(--amber);
+    }
+
+    .cost-bar .seg.com {
+      background: #B89050;
+    }
+
+    .cost-bar .seg.mkt {
+      background: var(--sage);
+    }
+
+    .cost-bar .seg.ga {
+      background: #5C6A78;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .cost-bar .seg.ebitda {
+      background: var(--gold);
+    }
+
+    .cost-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .cost-legend .lg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .cost-legend .lg i {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .insight-box {
+      background: rgba(200, 146, 60, 0.07);
+      border: 1px solid rgba(200, 146, 60, 0.3);
+      border-radius: 8px;
+      padding: 20px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .insight-box .ib-icon {
+      color: var(--gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      font-family: var(--mono);
+    }
+
+    .insight-box .ib-text {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .insight-box .ib-text b {
+      color: var(--gold);
+    }
+
+    .insight-box .ib-text .small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ===== TREND MINI CHART (slide 05) ===== */
+    .trend-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      height: 130px;
+      margin-top: 24px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .trend-bars .tb-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+      position: relative;
+    }
+
+    .trend-bars .tb-bar {
+      width: 56%;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      position: relative;
+    }
+
+    .trend-bars .tb-val {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .trend-bars .tb-label {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .truck-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(200, 146, 60, 0.08);
+      border: 1px solid rgba(200, 146, 60, 0.3);
+      border-radius: 8px;
+      padding: 16px 22px;
+      margin-top: 18px;
+    }
+
+    .truck-badge .tk-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(200, 146, 60, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .truck-badge .tk-text {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .truck-badge .tk-text b {
+      color: var(--gold);
+    }
+
+    /* ===== QR BADGE (slide 06) ===== */
+    .qr-float {
+      position: absolute;
+      right: 120px;
+      bottom: 130px;
+      background: var(--surface);
+      border: 1px solid var(--line-2);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 3;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .qr-float img {
+      width: 92px;
+      height: 92px;
+      border-radius: 4px;
+      background: #fff;
+      padding: 6px;
+    }
+
+    .qr-float .qr-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .qr-float .qr-kicker {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .qr-float .qr-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .qr-float .qr-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ===== PAYMENT LOGOS (slide 09) ===== */
+    .pay-logos {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .pay-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line-2);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: var(--surface);
+    }
+
+    .pay-logo.mp {
+      color: #00B1EA;
+      border-color: rgba(0, 177, 234, 0.35);
+    }
+
+    .pay-logo.visa {
+      color: #F7B600;
+      border-color: rgba(247, 182, 0, 0.35);
+    }
+
+    .pay-logo.mc {
+      color: #EB6238;
+      border-color: rgba(235, 98, 56, 0.35);
+    }
+
+    .pay-logo.modo {
+      color: #6FA56B;
+      border-color: rgba(111, 165, 107, 0.35);
+    }
+
+    .pay-logo.transfer {
+      color: var(--gold-soft);
+      border-color: rgba(224, 178, 92, 0.35);
+    }
+
+    /* ===== TP12 — DATA Y PERSONALIZACIÓN ===== */
+    .kpi-funnel-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .kpi-funnel-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-funnel-card .top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .kpi-funnel-card .kf-stage {
+      font-size: 12px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .kpi-funnel-card .kf-name {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.05;
+      margin-top: 2px;
+    }
+
+    .kpi-funnel-card .kf-value {
+      font-family: var(--mono);
+      font-size: 38px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .kpi-funnel-card .kf-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: auto;
+    }
+
+    .dash-mock {
+      margin-top: 28px;
+      background: #0A0A0A;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 26px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dash-mock .dm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dash-mock .dm-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .dash-mock .dm-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200, 146, 60, 0.35);
+      border-radius: 999px;
+      padding: 5px 14px;
+    }
+
+    .dash-mock .dm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .dash-mock .dm-cell {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .dash-mock .dm-cell .lbl {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dash-mock .dm-cell .val {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .dash-mock .dm-cell.ok .val {
+      color: var(--good);
+    }
+
+    .dash-mock .dm-cell.warn .val {
+      color: var(--warn);
+    }
+  </style>
+</head>
+
+<body>
+  <deck-stage>
+
+    <!-- ============================================================
+     SLIDE 01 — PORTADA
+     ============================================================ -->
+    <section data-screen-label="01 Portada" class="s-portada">
+      <div class="bg-grid"></div>
+      <div class="corner tl">CAFECTO · EST. 2026</div>
+      <div class="corner tr">UCEMA · COMERCIO ELECTRÓNICO</div>
+      <div class="corner bl">PRESENTACIÓN FINAL</div>
+      <div class="corner br">12 / 12</div>
+      <div class="cover">
+        <div style="font-family:var(--mono);font-size:14px;letter-spacing:0.5em;color:var(--gold);margin-bottom:48px;">—
+          COFFEE × FUNCTION —</div>
+        <h1>CAFECTO</h1>
+        <div class="gold-rule"></div>
+        <div class="sub">Café &amp; Ingredientes Funcionales. <span class="you">Potenciado por Vos.</span></div>
+        <div class="ucema">Comercio Electrónico <span style="margin:0 22px;color:var(--gold);">/</span> <b>UCEMA
+            2026</b> <span style="margin:0 22px;color:var(--gold);">/</span> Avance del proyecto</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 02 — EL PROYECTO + PRODUCTOS
+     ============================================================ -->
+    <section data-screen-label="02 El Proyecto">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">01 <b>· El Proyecto</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Punto de partida</div>
+          <h2 class="h-section">¿Qué es <span style="font-style:italic;" class="gold">CAFECTO</span>?</h2>
+        </div>
+        <div class="lead">Marca argentina de <b style="color:var(--text)">café especialidad suplementado</b>: cada blend
+          une grano de calidad con un ingrediente funcional, en un solo ritual diario. Venta D2C desde web propia.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-card rose">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/daily-glow.png');"></div>
+          <div class="body">
+            <div class="ingr">Colágeno Hidrolizado · 10g</div>
+            <div class="name">Daily <span style="color:var(--rose);font-style:italic;">Glow</span></div>
+            <div class="price">$27.999</div>
+            <div class="benef">
+              <span class="chip">Piel</span><span class="chip">Cabello</span><span class="chip">Articulaciones</span>
+            </div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+        </div>
+        <div class="product-card sage">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/zen-focus.png');"></div>
+          <div class="body">
+            <div class="ingr">L-Teanina · 200mg</div>
+            <div class="name">Zen <span style="color:var(--sage);font-style:italic;">Focus</span></div>
+            <div class="price">$25.999</div>
+            <div class="benef">
+              <span class="chip">Foco</span><span class="chip">Calma</span><span class="chip">Sin nervios</span>
+            </div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+        </div>
+        <div class="product-card amber">
+          <div class="top-bar"></div>
+          <div class="img" style="background-image:url('assets/turbo-drive.png');"></div>
+          <div class="body">
+            <div class="ingr">MCT Oil Powder · 5g</div>
+            <div class="name">Turbo <span style="color:var(--amber);font-style:italic;">Drive</span></div>
+            <div class="price">$28.999</div>
+            <div class="benef">
+              <span class="chip">Energía</span><span class="chip">Saciedad</span><span class="chip">Keto</span>
+            </div>
+          </div>
+          <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+        </div>
+      </div>
+      <div class="palette-strip" style="margin-top:24px;">
+        <div class="swatch rose"><span>Daily Glow</span><span class="mono">Piel</span></div>
+        <div class="swatch sage"><span>Zen Focus</span><span class="mono">Foco</span></div>
+        <div class="swatch amber"><span>Turbo Drive</span><span class="mono">Energía</span></div>
+      </div>
+      <div class="footstrip"><span>02</span><span>Mismo grano · Tres funciones</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 03 — BUYER PERSONA Y JTBD
+     ============================================================ -->
+    <section data-screen-label="03 Buyer Persona">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">02 <b>· Buyer Persona &amp; JTBD</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Cliente objetivo</div>
+          <h2 class="h-section">Dos perfiles, <span style="font-style:italic;" class="gold">un ritual</span></h2>
+        </div>
+        <div class="lead">CAFECTO apunta a consumidores ABC1 que ya invierten en bienestar y buscan integrar el
+          suplemento al café que toman todos los días.</div>
+      </div>
+      <div class="buyer-duo-layout">
+        <div class="buyer-photo-card">
+          <img src="assets/buyer-personas-cafecto.jpg"
+            alt="Buyer personas CAFECTO en contexto de bienestar y productividad">
+          <div class="buyer-photo-caption">
+            <div>
+              <div class="caption-kicker">Buyer Personas</div>
+              <div class="caption-title">Tomás + Sandra</div>
+            </div>
+            <div class="caption-meta">CABA · ABC1<br>Bienestar premium</div>
+          </div>
+        </div>
+        <div class="buyer-right">
+          <div class="persona-pair">
+            <div class="persona-card tomas">
+              <div class="pc-top">
+                <div>
+                  <div class="pc-name">Tomás</div>
+                  <div class="pc-meta">32 años · Palermo · Product Manager tech</div>
+                </div>
+                <div class="pc-product">Zen Focus<br>Turbo Drive</div>
+              </div>
+              <div class="pc-quote">"Quiero claridad mental sin depender de otro café."</div>
+              <div class="pc-list">
+                <div class="pc-line">Foco sostenido</div>
+                <div class="pc-line">Evidencia</div>
+                <div class="pc-line">Precio por dosis</div>
+                <div class="pc-line">Sin crash</div>
+              </div>
+            </div>
+            <div class="persona-card sandra">
+              <div class="pc-top">
+                <div>
+                  <div class="pc-name">Sandra</div>
+                  <div class="pc-meta">51 años · Belgrano · Socia gerente</div>
+                </div>
+                <div class="pc-product">Daily Glow<br>Glow + Zen</div>
+              </div>
+              <div class="pc-quote">"El colágeno que ya tomo, en el café que no dejo."</div>
+              <div class="pc-list">
+                <div class="pc-line">Colágeno 10g</div>
+                <div class="pc-line">Diseño premium</div>
+                <div class="pc-line">Recomendación</div>
+                <div class="pc-line">Sin paso extra</div>
+              </div>
+            </div>
+          </div>
+          <div class="buyer-jtbd-strip">
+            <div class="buyer-jtbd">
+              <div class="bj-num">JTBD · 01</div>
+              <div class="bj-title">Performance cognitiva</div>
+              <div class="bj-body">Reuniones, foco y energía sin crash.</div>
+              <div class="bj-product" style="color:var(--sage);">Zen Focus</div>
+            </div>
+            <div class="buyer-jtbd">
+              <div class="bj-num">JTBD · 02</div>
+              <div class="bj-title">Cuidado integrado</div>
+              <div class="bj-body">Colágeno con respaldo dentro del café diario.</div>
+              <div class="bj-product" style="color:var(--rose);">Daily Glow</div>
+            </div>
+            <div class="buyer-jtbd">
+              <div class="bj-num">JTBD · 03</div>
+              <div class="bj-title">Menos pasos, más efecto</div>
+              <div class="bj-body">Café + activo funcional + experiencia premium.</div>
+              <div class="bj-product" style="color:var(--gold);">Combo CAFECTO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footstrip"><span>03</span><span>Buyer Persona · JTBD</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 04 — COSTOS
+     ============================================================ -->
+    <section data-screen-label="04 Costos">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">03 <b>· Costos &amp; Rentabilidad</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Estructura financiera</div>
+          <h2 class="h-section">El EBITDA es del <span style="font-style:italic;" class="gold">23%</span> desde el
+            primer mes</h2>
+        </div>
+        <div class="lead">26 pedidos en el Mes 1 ya cubren <b style="color:var(--text)">1,88 veces</b> el break-even
+          (13,8 pedidos). El negocio es rentable desde el arranque, sin necesidad de escalar primero.</div>
+      </div>
+      <div class="cost-bar" style="margin-top:28px;">
+        <div class="seg cogs" style="flex:35.4;">35% COGS</div>
+        <div class="seg log" style="flex:9.5;">9%</div>
+        <div class="seg com" style="flex:3.2;"></div>
+        <div class="seg mkt" style="flex:12.9;">13% Mkt</div>
+        <div class="seg ga" style="flex:11.6;">12%</div>
+        <div class="seg ebitda" style="flex:23.3;">23% EBITDA</div>
+      </div>
+
+      <div class="cost-grid" style="margin-top:28px;">
+        <!-- 3 KPIs grandes -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+          <div class="pl-stat">
+            <div class="pvs-label">Venta Bruta</div>
+            <div class="pvs-value" style="font-size:64px;">$905K</div>
+            <div class="pvs-sub">26 pedidos · Mes 1</div>
+          </div>
+          <div class="pl-stat">
+            <div class="pvs-label">Margen Bruto</div>
+            <div class="pvs-value" style="font-size:64px;">64.6%</div>
+            <div class="pvs-sub">$567K de Gross Profit</div>
+          </div>
+          <div class="pl-stat highlight">
+            <div class="pvs-label">EBITDA · Mes 1</div>
+            <div class="pvs-value" style="font-size:64px;">$204K</div>
+            <div class="pvs-sub">23,3% · objetivo cumplido ✓</div>
+          </div>
+        </div>
+
+        <!-- Break-even + tendencia -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="be-card" style="flex:1;">
+            <div class="bc-title">Break-even · <span class="gold" style="font-style:italic;">1.88×</span> cubierto</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
+              <div style="text-align:center;">
+                <div style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">Mínimo</div>
+                <div style="font-family:var(--serif);font-size:56px;color:var(--text);line-height:1;margin-top:4px;">13.8</div>
+                <div style="font-size:14px;color:var(--muted);">pedidos</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;">Mes 1 real</div>
+                <div style="font-family:var(--serif);font-size:56px;color:var(--gold);line-height:1;margin-top:4px;">26</div>
+                <div style="font-size:14px;color:var(--muted);">pedidos</div>
+              </div>
+            </div>
+          </div>
+          <div class="trend-bars" style="flex:1;padding-bottom:32px;margin-top:0;">
+            <div class="tb-wrap"><span class="tb-val">23%</span>
+              <div class="tb-bar" style="height:46%;"></div><span class="tb-label">Mes 1</span>
+            </div>
+            <div class="tb-wrap"><span class="tb-val">36%</span>
+              <div class="tb-bar" style="height:74%;"></div><span class="tb-label">Mes 3</span>
+            </div>
+            <div class="tb-wrap"><span class="tb-val">43%</span>
+              <div class="tb-bar" style="height:100%;"></div><span class="tb-label">Mes 6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footstrip"><span>04</span><span>Costos · Entregado</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 05 — TP 8: LOGÍSTICA Y STOCK
+     ============================================================ -->
+    <section data-screen-label="05 TP8 Logistica">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">TP 8 <b>· Logística &amp; Stock</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Trabajo Práctico 8</div>
+          <h2 class="h-section">El envío gratis nos cuesta <span style="font-style:italic;" class="gold">9%</span>
+            y lo absorbemos</h2>
+        </div>
+        <div class="lead">Stock propio + carrier nacional. Las dos decisiones que sostienen la rentabilidad sin
+          trasladarle el costo al cliente.</div>
+      </div>
+      <div class="two-col">
+        <div class="check-list">
+          <div class="item">
+            <div class="ico">🚚</div>
+            <div>
+              <div class="it-title">Carrier · <span class="gold">Andreani</span></div>
+              <div class="it-body">📦 Integración directa con la web. Cobertura nacional puerta a puerta + retiro en
+                sucursal.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico">🎁</div>
+            <div>
+              <div class="it-title">Envío gratis · siempre</div>
+              <div class="it-body"><b>$3.200</b> por pedido = <b>9,2%</b> del ticket, absorbido por CAFECTO. Cero
+                recargo visible al cliente.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico">🏠</div>
+            <div>
+              <div class="it-title">Stock propio</div>
+              <div class="it-body">Dropshipping descartado: <b>SEDI/SIRA</b> bloquean la importación directa.
+                Pulmón local propio.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="ico">🔁</div>
+            <div>
+              <div class="it-title">Reposición · <span class="gold">ROP = 10</span></div>
+              <div class="it-body">Por SKU. 21 días de lead-time + 5 unidades de stock de seguridad.</div>
+            </div>
+          </div>
+        </div>
+        <div class="pnl" style="display:flex;flex-direction:column;">
+          <div class="pnl-title">
+            <div class="t">EBITDA <span class="gold" style="font-style:italic;">/ tendencia</span></div>
+            <div class="m">% sobre venta neta</div>
+          </div>
+          <div class="truck-badge">
+            <div class="tk-icon">🚚</div>
+            <div class="tk-text">Andreani entrega en <b>24–48hs CABA/GBA</b> y <b>3–5 días</b> resto del país.
+              El envío gratis es costo de marketing, no logístico.</div>
+          </div>
+          <div class="trend-bars" style="flex:1;">
+            <div class="tb-wrap"><span class="tb-val">23,3%</span>
+              <div class="tb-bar" style="height:45%;"></div><span class="tb-label">Mes 1</span>
+            </div>
+            <div class="tb-wrap"><span class="tb-val">35,9%</span>
+              <div class="tb-bar" style="height:70%;"></div><span class="tb-label">Mes 3</span>
+            </div>
+            <div class="tb-wrap"><span class="tb-val">43,1%</span>
+              <div class="tb-bar" style="height:100%;"></div><span class="tb-label">Mes 6</span>
+            </div>
+          </div>
+          <div class="legend" style="margin-top:14px;">El EBITDA casi se duplica en 6 meses por dilución de costos
+            fijos</div>
+        </div>
+      </div>
+      <div class="footstrip"><span>05</span><span>TP 8 · Entregado</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 06 — TP 9: UX
+     ============================================================ -->
+    <section data-screen-label="06 TP9 UX">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">TP 9 <b>· Experiencia del Usuario</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Trabajo Práctico 9</div>
+          <h2 class="h-section">Cumplimos <span style="font-style:italic;" class="gold">5 de 10</span> heurísticas
+            de Nielsen</h2>
+        </div>
+        <div class="lead">Auditoría heurística + mapa de empatía sobre la home y el checkout. La web ya está
+          funcionando — escaneá el QR y probala.</div>
+      </div>
+      <div class="ux-split">
+        <div class="ux-block">
+          <h3>Análisis Heurístico</h3>
+          <div class="meta">Nielsen · 10 principios</div>
+          <div class="heur-10">
+            <div class="heur-row ok">
+              <span class="hr-num">H1</span><span class="hr-ico">✅</span>
+              <span class="hr-text">Visibilidad del estado del sistema</span>
+            </div>
+            <div class="heur-row ok">
+              <span class="hr-num">H2</span><span class="hr-ico">✅</span>
+              <span class="hr-text">Lenguaje del usuario</span>
+            </div>
+            <div class="heur-row warn">
+              <span class="hr-num">H3</span><span class="hr-ico">⚠️</span>
+              <span class="hr-text">Control y libertad<span class="hr-action">→ Agregar botón "deshacer" en el carrito</span></span>
+            </div>
+            <div class="heur-row ok">
+              <span class="hr-num">H4</span><span class="hr-ico">✅</span>
+              <span class="hr-text">Consistencia y estándares</span>
+            </div>
+            <div class="heur-row warn">
+              <span class="hr-num">H5</span><span class="hr-ico">⚠️</span>
+              <span class="hr-text">Prevención de errores<span class="hr-action">→ Confirmación antes de finalizar pago</span></span>
+            </div>
+            <div class="heur-row ok">
+              <span class="hr-num">H6</span><span class="hr-ico">✅</span>
+              <span class="hr-text">Reconocer antes que recordar</span>
+            </div>
+            <div class="heur-row warn">
+              <span class="hr-num">H7</span><span class="hr-ico">⚠️</span>
+              <span class="hr-text">Flexibilidad y eficiencia<span class="hr-action">→ Accesos rápidos para recompra</span></span>
+            </div>
+            <div class="heur-row ok">
+              <span class="hr-num">H8</span><span class="hr-ico">✅</span>
+              <span class="hr-text">Estética y diseño minimalista</span>
+            </div>
+            <div class="heur-row warn">
+              <span class="hr-num">H9</span><span class="hr-ico">⚠️</span>
+              <span class="hr-text">Recuperación ante errores<span class="hr-action">→ Mensajes de error claros y accionables</span></span>
+            </div>
+            <div class="heur-row warn">
+              <span class="hr-num">H10</span><span class="hr-ico">⚠️</span>
+              <span class="hr-text">Ayuda y documentación<span class="hr-action">→ FAQ visible en el checkout</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="ux-block">
+          <h3>Mapa de empatía — <span class="gold" style="font-style:italic;">Tomás</span></h3>
+          <div class="meta">32 años · CABA · Profesional tech</div>
+          <div class="empathy">
+            <div class="q">
+              <div class="hd"><span class="e">🧠</span> Piensa &amp; Siente</div>
+              <ul>
+                <li>"Quiero rendir más sin depender de cafeína."</li>
+                <li>Frustrado con suplementos sin evidencia.</li>
+              </ul>
+            </div>
+            <div class="q">
+              <div class="hd"><span class="e">👀</span> Ve</div>
+              <ul>
+                <li>Marcas D2C en Instagram · estética premium.</li>
+                <li>Podcasts de biohacking · Huberman Lab.</li>
+              </ul>
+            </div>
+            <div class="q">
+              <div class="hd"><span class="e">👂</span> Oye</div>
+              <ul>
+                <li>Colegas que "toman MCT por la mañana".</li>
+                <li>Trainer recomienda colágeno post-30.</li>
+              </ul>
+            </div>
+            <div class="q">
+              <div class="hd"><span class="e">💬</span> Dice &amp; Hace</div>
+              <ul>
+                <li>Compra en cuotas, lee etiquetas, repite SKU.</li>
+                <li>Comparte hallazgos con su círculo.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="qr-block">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=E8E4DF&bgcolor=0E0E0E&data=https://cafe-alchemy-web.lovable.app" alt="QR CAFECTO">
+            <div class="qb-text">
+              <div class="qb-kicker">Probala en vivo</div>
+              <div class="qb-title">Escaneá el QR</div>
+              <div class="qb-url">cafe-alchemy-web.lovable.app</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footstrip"><span>06</span><span>TP 9 · Entregado</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 07 — MKT ONLINE (SEO + SEM + REDES)
+     ============================================================ -->
+    <section data-screen-label="07 Mkt Online">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">Consigna 5 <b>· Mkt Online</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Marketing Digital</div>
+          <h2 class="h-section">Tres canales bajan el <span style="font-style:italic;" class="gold">CAC</span> con
+            el tiempo</h2>
+        </div>
+        <div class="lead">Orgánico, pagado y editorial trabajando juntos para construir comunidad mientras
+          escalamos.</div>
+      </div>
+
+      <div class="mkt-cols">
+        <div class="mkt-col">
+          <div class="mc-icon-row">
+            <div class="mc-icon">🔍</div>
+            <div class="mc-title">SEO</div>
+          </div>
+          <ul class="mc-list">
+            <li>🎯 "Café funcional Argentina" + long tail por producto</li>
+            <li>✍️ Blog: ciencia de ingredientes y rituales matutinos</li>
+            <li>📈 Meta descriptions optimizadas por SKU</li>
+          </ul>
+          <div class="mc-kpi">Objetivo · <b>Top 5 orgánico en 6 meses</b></div>
+        </div>
+        <div class="mkt-col">
+          <div class="mc-icon-row">
+            <div class="mc-icon">💳</div>
+            <div class="mc-title">SEM</div>
+          </div>
+          <ul class="mc-list">
+            <li>🎯 Campañas de consideración por producto</li>
+            <li>🔁 Remarketing a visitantes sin conversión &gt;3 días</li>
+            <li>💰 CPL estimado <b>$1.200–$1.800</b></li>
+          </ul>
+          <div class="mc-kpi">CAC objetivo Mes 6 · <b>$8.000</b></div>
+        </div>
+        <div class="mkt-col">
+          <div class="mc-icon-row">
+            <div class="mc-icon">📱</div>
+            <div class="mc-title">Redes</div>
+          </div>
+          <ul class="mc-list">
+            <li>📚 Contenido educativo: ingrediente + evidencia + dosis</li>
+            <li>🎥 Reels de rutina matutina, 1 por semana</li>
+            <li>💬 UGC y repost de clientes reales</li>
+          </ul>
+          <div class="mc-kpi">Email open rate obj · <b>28%</b></div>
+        </div>
+      </div>
+
+      <div class="week-compact">
+        <div class="day-sm sage">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Lun</div>
+          <div class="ds-date">01</div>
+          <div class="ds-type">Feed · Educativo</div>
+          <div class="ds-what">L-Teanina vs. cafeína</div>
+        </div>
+        <div class="day-sm mixed">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Mar</div>
+          <div class="ds-date">02</div>
+          <div class="ds-type">Story · Encuesta</div>
+          <div class="ds-what">¿Mañana o tarde?</div>
+        </div>
+        <div class="day-sm amber">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Mié</div>
+          <div class="ds-date">03</div>
+          <div class="ds-type">Reel · Rutina</div>
+          <div class="ds-what">Mañana keto · 60s</div>
+        </div>
+        <div class="day-sm rose">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Jue</div>
+          <div class="ds-date">04</div>
+          <div class="ds-type">Feed · Producto</div>
+          <div class="ds-what">Beneficios + ingredientes</div>
+        </div>
+        <div class="day-sm mixed">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Vie</div>
+          <div class="ds-date">05</div>
+          <div class="ds-type">Story · UGC</div>
+          <div class="ds-what">Repost cliente real</div>
+        </div>
+        <div class="day-sm mixed">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Sáb</div>
+          <div class="ds-date">06</div>
+          <div class="ds-type">Feed · Lifestyle</div>
+          <div class="ds-what">Combo total · 3 SKU</div>
+        </div>
+        <div class="day-sm sage">
+          <div class="pdot-sm"></div>
+          <div class="ds-dow">Dom</div>
+          <div class="ds-date">07</div>
+          <div class="ds-type">Story · Educativo</div>
+          <div class="ds-what">Mindfulness matutino</div>
+        </div>
+      </div>
+
+      <div class="mkt-footer">
+        <span><b>3</b> feed</span><span class="sep">/</span>
+        <span><b>5</b> stories</span><span class="sep">/</span>
+        <span><b>1</b> reel</span><span class="sep">/</span>
+        <span>semana</span><span class="sep">·</span>
+        <span>CAC real Mes 1 <b>$4.346</b> → objetivo Mes 6 <b>$8.000</b></span>
+      </div>
+
+      <div class="footstrip"><span>07</span><span>Consigna 5 · Entregada</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 08 — PRECIOS Y CONFIANZA
+     ============================================================ -->
+    <section data-screen-label="08 Precios">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">Entregable <b>· Precios y confianza</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Estrategia de precios</div>
+          <h2 class="h-section">Los combos suben el ticket <span style="font-style:italic;" class="gold">35%</span>
+          </h2>
+        </div>
+        <div class="lead">Charm pricing, bundling y precio ancla combinados para maximizar el ticket promedio sin
+          resignar margen.</div>
+      </div>
+
+      <div class="price-split">
+        <div class="browser">
+          <div class="chrome">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="url"><span class="lock">●</span> https://<span class="path">cafecto.com/precios</span></div>
+            <div class="badge-ok">Entregado ✓</div>
+          </div>
+          <div class="view">
+            <div class="vhead">
+              <h4>Elegí tu blend</h4>
+              <div class="sub">Envío gratis · Todo el país</div>
+            </div>
+            <div class="pricing">
+              <div class="pcard rose">
+                <div class="accent"></div>
+                <div class="pname">Daily Glow</div>
+                <div class="pin">Colágeno · <b>10g</b></div>
+                <div class="pprice">$27.999</div>
+                <div class="pbtn">Agregar al carrito</div>
+              </div>
+              <div class="pcard sage feat">
+                <div class="accent"></div>
+                <div class="pname">Zen Focus <span class="gold" style="font-style:italic;font-size:14px;">·
+                    popular</span></div>
+                <div class="pin">L-Teanina · <b>200mg</b></div>
+                <div class="pprice">$25.999</div>
+                <div class="pbtn">Agregar al carrito</div>
+              </div>
+              <div class="pcard amber">
+                <div class="accent"></div>
+                <div class="pname">Turbo Drive</div>
+                <div class="pin">MCT · <b>5g</b></div>
+                <div class="pprice">$28.999</div>
+                <div class="pbtn">Agregar al carrito</div>
+              </div>
+            </div>
+            <div class="combos-row">
+              <div class="pcard combo-g">
+                <div class="accent"></div>
+                <div class="pname">Combo Glow + Zen</div>
+                <div class="pin">2 productos · <b>ahorrás $8.999</b></div>
+                <div class="pold">$53.998</div>
+                <div class="pprice">$44.999</div>
+                <div class="pbtn">Agregar combo</div>
+              </div>
+              <div class="pcard combo-t feat">
+                <div class="accent"></div>
+                <div class="pname">Combo Total <span class="gold" style="font-style:italic;font-size:14px;">· mejor
+                    valor</span></div>
+                <div class="pin">3 productos · <b>ahorrás $17.998</b></div>
+                <div class="pold">$82.997</div>
+                <div class="pprice">$64.999</div>
+                <div class="pbtn">Agregar combo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-stack">
+          <div class="strategy-card">
+            <div class="sc-num">Decisión · 01</div>
+            <div class="sc-title">Charm pricing</div>
+            <div class="sc-body">Terminación <b>$X.999</b> activa percepción de precio en el rango inferior ($X.000).
+            </div>
+          </div>
+          <div class="strategy-card">
+            <div class="sc-num">Decisión · 02</div>
+            <div class="sc-title">Bundling</div>
+            <div class="sc-body">Combo Glow+Zen ahorra <b>$8.999 (16,7%)</b>, margen del bundle: <b>57,6%</b>.</div>
+          </div>
+          <div class="strategy-card">
+            <div class="sc-num">Decisión · 03</div>
+            <div class="sc-title">Precio ancla</div>
+            <div class="sc-body">Precio tachado + precio combo = <b>efecto encuadre</b> que justifica la compra de dos
+              productos.</div>
+          </div>
+          <div class="strategy-card">
+            <div class="sc-num">Decisión · 04</div>
+            <div class="sc-title">Señuelo</div>
+            <div class="sc-body">Combo Total (<b>$64.999</b>) hace que Glow+Zen (<b>$44.999</b>) parezca la opción
+              inteligente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footstrip"><span>08</span><span>Página de precios · Entregada</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 09 — MEDIOS DE PAGO
+     ============================================================ -->
+    <section data-screen-label="09 Medios de Pago">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">Entregable <b>· Medios de pago</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Estrategia financiera</div>
+          <h2 class="h-section">MercadoPago ahorra <span style="font-style:italic;" class="gold">$19.200</span> al
+            mes</h2>
+        </div>
+        <div class="lead">Sin pasarelas directas: arrancamos con MercadoPago como agregador principal, transferencias
+          y cuotas en combos — no necesitamos el piso de 5.000–10.000 transacciones que exigen Prisma o Payway.</div>
+      </div>
+
+      <div class="pay-section">
+        <div class="pay-table-wrap">
+          <table class="pay-table">
+            <thead>
+              <tr>
+                <th>Canal</th>
+                <th>Comisión</th>
+                <th>% del mix</th>
+                <th>Justificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="canal">MercadoPago</td>
+                <td class="com">3,39%+IVA = 4,10%</td>
+                <td class="mix">60%</td>
+                <td class="just">Agregador principal. Acreditación 18 días protege el cash flow.</td>
+              </tr>
+              <tr>
+                <td class="canal">Transferencia 3.0 / QR</td>
+                <td class="com">0%</td>
+                <td class="mix">25%</td>
+                <td class="just">Máximo margen. Incentivado con e-book gratuito al pagar así.</td>
+              </tr>
+              <tr>
+                <td class="canal">MODO / Billeteras</td>
+                <td class="com">2,0%</td>
+                <td class="mix">15%</td>
+                <td class="just">Aprovecha promociones bancarias. Amplía base de clientes.</td>
+              </tr>
+              <tr>
+                <td class="canal">3 cuotas s/i · solo combos</td>
+                <td class="com">~4,5% subsidio</td>
+                <td class="mix" style="color:var(--gold);">Solo combos</td>
+                <td class="just">Inversión en ticket alto y recurrencia. Aplica sobre Glow+Zen y Combo Total.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pay-logos">
+          <div class="pay-logo mp">💙 Mercado Pago</div>
+          <div class="pay-logo transfer">🏦 Transferencia 3.0</div>
+          <div class="pay-logo modo">📲 MODO</div>
+          <div class="pay-logo" style="color:var(--sage);border-color:rgba(90,138,104,0.35);">🔄 3 cuotas s/i</div>
+        </div>
+        <div class="pay-decision">
+          <div class="pd-icon">→</div>
+          <div class="pd-text">MercadoPago acreditación <b>18 días (3,39%+IVA)</b> vs. inmediata <b>(6,29%)</b> → ahorro
+            de <b>2,2pp = $19.200/mes</b> en Mes 1. Equivale al <b>18,8% del G&amp;A mensual</b>.</div>
+        </div>
+      </div>
+
+      <div class="footstrip"><span>09</span><span>Medios de pago · Definidos</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 10 — ACTIVOS DIGITALES (Website + Video)
+     ============================================================ -->
+    <section data-screen-label="10 Activos Digitales">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">Entregable <b>· Activos digitales</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Web + Video</div>
+          <h2 class="h-section">La web está <span style="font-style:italic;" class="gold">100%</span> funcional</h2>
+        </div>
+        <div class="lead">Carrito, checkout y combos operativos de punta a punta. Tres piezas de video generadas con
+          Gemini Veo listas para publicar en Instagram y TikTok.</div>
+      </div>
+
+      <div class="assets-split">
+        <!-- Website -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="progress-card" style="flex:1;">
+            <div class="head">
+              <div class="label">Progreso de desarrollo</div>
+              <div class="label gold">7 / 7</div>
+            </div>
+            <div class="pct">100<sup>%</sup></div>
+            <div class="bar-wrap">
+              <div class="bar">
+                <div class="fill" style="width:100%;"></div>
+              </div>
+              <div class="bar-labels">
+                <span>· Build</span>
+                <span style="color:var(--gold);">Lanzada</span>
+                <span>Launch ✓</span>
+              </div>
+            </div>
+            <div class="platform">
+              <div>
+                <div class="p-t">Lovable.dev</div>
+                <div class="p-m" style="margin-top:4px;">Stack · React + Vite</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="p-t" style="color:var(--gold);">v1.0</div>
+                <div class="p-m" style="margin-top:4px;">Producción</div>
+              </div>
+            </div>
+          </div>
+          <div class="status-card" style="flex:1;">
+            <h3>Estado del proyecto</h3>
+            <div class="sub">100% funcional · en producción</div>
+            <div class="status-cols">
+              <div>
+                <div class="status-col-hd ok">✓ Listo · 9</div>
+                <div class="status-list">
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Carrito funcional</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Checkout MercadoPago</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Combos + descuentos</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Envío gratis automático</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Hosting + dominio propio</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">WhatsApp flotante</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Meta Pixel + Analytics</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Imágenes en producción</div>
+                    <div class="st">Live</div>
+                  </div>
+                  <div class="row">
+                    <div class="dot-st"></div>
+                    <div class="name">Reviews / FAQ / UX</div>
+                    <div class="st">Live</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="status-col-hd pend">→ Próximas mejoras · 3</div>
+                <div class="status-list">
+                  <div class="row wip">
+                    <div class="dot-st"></div>
+                    <div class="name">Suscripciones mensuales</div>
+                    <div class="st">Roadmap</div>
+                  </div>
+                  <div class="row wip">
+                    <div class="dot-st"></div>
+                    <div class="name">Login / Mi cuenta</div>
+                    <div class="st">Roadmap</div>
+                  </div>
+                  <div class="row wip">
+                    <div class="dot-st"></div>
+                    <div class="name">Newsletter → Klaviyo</div>
+                    <div class="st">Roadmap</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video -->
+        <div class="vid-col">
+          <div>
+            <div class="vid-col-title">Producción con <span class="gold" style="font-style:italic;">IA</span></div>
+            <div class="vid-col-sub">Gemini Veo · 3 piezas · Instagram + TikTok</div>
+          </div>
+          <div class="vid-row" style="flex:1;min-height:0;">
+            <div class="vidcard-sm rose" style="border-top:2px solid var(--rose);">
+              <div class="preview-sm" style="flex:1;min-height:0;">
+                <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+                  <source src="assets/cafe_daily_glow.mp4" type="video/mp4">
+                </video>
+                <div class="ov-sm"><span>9:16</span><span>8s</span></div>
+              </div>
+              <div class="vft"><span>Daily Glow</span><b>9:16</b></div>
+            </div>
+            <div class="vidcard-sm sage" style="border-top:2px solid var(--sage);">
+              <div class="preview-sm horiz" style="flex:1;min-height:0;">
+                <video autoplay loop muted playsinline
+                  style="width:100%;height:100%;object-fit:contain;display:block;background:#0A0A0A;">
+                  <source src="assets/cafe_zen_focus.mp4" type="video/mp4">
+                </video>
+                <div class="ov-sm"><span>16:9</span><span>8s</span></div>
+              </div>
+              <div class="vft"><span>Zen Focus</span><b>16:9</b></div>
+            </div>
+            <div class="vidcard-sm amber" style="border-top:2px solid var(--amber);">
+              <div class="preview-sm horiz" style="flex:1;min-height:0;">
+                <video autoplay loop muted playsinline
+                  style="width:100%;height:100%;object-fit:contain;display:block;background:#0A0A0A;">
+                  <source src="assets/cafe_turbodrive.mp4" type="video/mp4">
+                </video>
+                <div class="ov-sm"><span>16:9</span><span>8s</span></div>
+              </div>
+              <div class="vft"><span>Turbo Drive</span><b>16:9</b></div>
+            </div>
+          </div>
+          <div class="vid-stats">
+            <span><b>3</b> piezas</span><span class="sep">·</span>
+            <span><b>&lt; 5 min</b> por pieza</span><span class="sep">·</span>
+            <span><b>$0</b> costo de producción</span><span class="sep">·</span>
+            <span>Gemini <b>Veo</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footstrip"><span>10</span><span>Activos digitales · Lanzado</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 11 — TP 12: DATA Y PERSONALIZACIÓN
+     ============================================================ -->
+    <section data-screen-label="11 TP12 Data">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">TP 12 <b>· Data &amp; Personalización</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Trabajo Práctico 12</div>
+          <h2 class="h-section">El cliente vale <span style="font-style:italic;" class="gold">24 veces</span> lo
+            que cuesta conseguirlo</h2>
+        </div>
+        <div class="lead">4 métricas cubren el embudo completo: de cuánto cuesta atraer un cliente hasta cuánto vale
+          que se quede.</div>
+      </div>
+
+      <div class="kpi-funnel-row">
+        <div class="kpi-funnel-card">
+          <div class="top-bar" style="background:var(--rose);"></div>
+          <div class="kf-stage">🎯 Adquisición</div>
+          <div class="kf-name">CAC</div>
+          <div class="kf-value">$4.346</div>
+          <div class="kf-desc">Costo por cliente, Mes 1. Objetivo Mes 6: <b style="color:var(--text)">$8.000</b> con
+            campaña optimizada.</div>
+        </div>
+        <div class="kpi-funnel-card">
+          <div class="top-bar" style="background:var(--amber);"></div>
+          <div class="kf-stage">🖱️ Acción</div>
+          <div class="kf-name">Tasa de Conversión</div>
+          <div class="kf-value">1–3%</div>
+          <div class="kf-desc">Benchmark de e-commerce en Argentina. Se mide con Meta Pixel + Google Analytics.</div>
+        </div>
+        <div class="kpi-funnel-card">
+          <div class="top-bar" style="background:var(--gold);"></div>
+          <div class="kf-stage">🛒 Ticket</div>
+          <div class="kf-name">AOV</div>
+          <div class="kf-value">$34.808</div>
+          <div class="kf-desc">Ticket promedio Mes 1. Sube con el mix de combos sin necesidad de nuevos clientes.
+          </div>
+        </div>
+        <div class="kpi-funnel-card">
+          <div class="top-bar" style="background:var(--sage);"></div>
+          <div class="kf-stage">🔁 Retención</div>
+          <div class="kf-name">LTV / NPS</div>
+          <div class="kf-value">$104.424</div>
+          <div class="kf-desc">Valor del cliente a 1 año (3 compras). LTV/CAC = <b style="color:var(--text)">24x</b>
+            — modelo sano (&gt;3x).</div>
+        </div>
+      </div>
+
+      <div class="dash-mock">
+        <div class="dm-head">
+          <div class="dm-title">Tablero de Control — CAFECTO</div>
+          <div class="dm-tag">Mes 1</div>
+        </div>
+        <div class="dm-grid">
+          <div class="dm-cell ok"><span class="lbl">EBITDA %</span><span class="val">23,3%</span></div>
+          <div class="dm-cell ok"><span class="lbl">Break-even</span><span class="val">1,88×</span></div>
+          <div class="dm-cell ok"><span class="lbl">AOV</span><span class="val">$34.808</span></div>
+          <div class="dm-cell warn"><span class="lbl">CAC</span><span class="val">$4.346</span></div>
+          <div class="dm-cell ok"><span class="lbl">LTV/CAC</span><span class="val">24×</span></div>
+          <div class="dm-cell warn"><span class="lbl">Devoluciones</span><span class="val">3,0%</span></div>
+          <div class="dm-cell"><span class="lbl">NPS</span><span class="val">A medir</span></div>
+          <div class="dm-cell"><span class="lbl">Churn</span><span class="val">A medir</span></div>
+        </div>
+      </div>
+
+      <div class="footstrip"><span>11</span><span>TP 12 · Entregado</span></div>
+    </section>
+
+    <!-- ============================================================
+     SLIDE 11 — CIERRE / PRÓXIMOS PASOS
+     ============================================================ -->
+    <section data-screen-label="12 Cierre">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+        <div class="chapter">12 <b>· Próximos pasos</b></div>
+      </div>
+      <div class="head-row">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px;">Roadmap a 1 año</div>
+          <h2 class="h-section">De <span style="font-style:italic;" class="gold">lanzamiento</span> a escala</h2>
+        </div>
+        <div class="lead">Ocho trabajos entregados y una marca 100% operativa. Así seguimos creciendo después de
+          la presentación.</div>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline">
+          <div class="tnode">
+            <div class="ring"><i></i></div>
+            <div class="stage-l">Hecho</div>
+            <div class="stage-d">TP completados</div>
+            <ul>
+              <li>📋 Buyer Persona &amp; JTBD</li>
+              <li>💰 Costos · P&amp;L &amp; Break-even</li>
+              <li>📣 TP 4 · Mkt Online</li>
+              <li>🏷️ TP 6 · Precios &amp; Medios de pago</li>
+              <li>🚚 TP 8 · Logística &amp; Stock</li>
+              <li>🖥️ TP 9 · Experiencia de Usuario</li>
+              <li>📊 TP 12 · Data &amp; Personalización</li>
+              <li>📱 Consigna 5 · Redes</li>
+            </ul>
+          </div>
+          <div class="tnode wip">
+            <div class="ring"><i></i></div>
+            <div class="stage-l">Próximos 6 meses</div>
+            <div class="stage-d">Crecimiento</div>
+            <ul>
+              <li>📈 Escalar Meta Ads bajando el CAC a $8.000</li>
+              <li>🔔 Activar suscripción mensual y recompra</li>
+              <li>⭐ Medir NPS y churn real desde Mes 2</li>
+            </ul>
+          </div>
+          <div class="tnode future">
+            <div class="ring"><i></i></div>
+            <div class="stage-l">Año 1</div>
+            <div class="stage-d">Escala nacional</div>
+            <ul>
+              <li>🎯 Superar 10.000 transacciones/mes</li>
+              <li>💳 Incorporar gateways directos (Prisma/Payway)</li>
+              <li>🌎 Expansión a todo el país</li>
+            </ul>
+          </div>
+        </div>
+        <div class="closing">
+          <div class="quote">"Tres blends. Tres beneficios. <span class="b">Un ritual diario.</span>"</div>
+          <div class="signature">CAFECTO <span class="dotsep">·</span> Comercio Electrónico <span
+              class="dotsep">·</span> <b>UCEMA 2026</b></div>
+        </div>
+      </div>
+      <div class="footstrip"><span>12</span><span>Fin de la presentación · Gracias</span></div>
+    </section>
+
+  </deck-stage>
+  <script src="deck-stage.js"></script>
+</body>
+
+</html>

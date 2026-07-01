@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>CAFECTO — Avance del Proyecto · UCEMA 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0E0E0E;
+    --surface:#161616;
+    --surface-2:#1C1C1C;
+    --line:rgba(255,255,255,0.07);
+    --line-2:rgba(255,255,255,0.12);
+    --gold:#C8923C;
+    --gold-soft:#E0B25C;
+    --text:#E8E4DF;
+    --muted:#7A7470;
+    --rose:#C08878;
+    --sage:#5A8A68;
+    --amber:#C87830;
+    --good:#6FA56B;
+    --warn:#D4A24A;
+
+    --serif:"Playfair Display", serif;
+    --sans:"DM Sans", system-ui, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, monospace;
+  }
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);}
+  deck-stage{ background:#000; }
+
+  /* --- slide chrome --- */
+  section{
+    box-sizing:border-box;
+    width:1920px;height:1080px;
+    background:var(--bg);
+    color:var(--text);
+    padding:96px 120px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  section::after{
+    /* faint vignette */
+    content:"";
+    position:absolute;inset:0;
+    background:radial-gradient(120% 80% at 50% 30%, transparent 55%, rgba(0,0,0,0.55) 100%);
+    pointer-events:none;
+  }
+  /* slide header chrome */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    color:var(--muted);
+    font-family:var(--sans);
+    font-size:18px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .topbar .brand{display:flex;align-items:center;gap:14px;}
+  .topbar .brand .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
+  .topbar .chapter{color:var(--muted);}
+  .topbar .chapter b{color:var(--text);font-weight:600;}
+
+  h1,h2,h3,h4{margin:0;color:var(--text);}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:16px;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .h-display{
+    font-family:var(--serif);
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:0.95;
+    font-size:120px;
+  }
+  .h-section{
+    font-family:var(--serif);
+    font-weight:500;
+    letter-spacing:-0.005em;
+    line-height:1.02;
+    font-size:84px;
+  }
+  .h-sub{
+    font-family:var(--serif);
+    font-weight:400;
+    font-style:italic;
+    color:var(--muted);
+    font-size:36px;
+    line-height:1.25;
+  }
+  .lead{
+    font-family:var(--sans);
+    color:var(--muted);
+    font-size:24px;
+    line-height:1.5;
+    font-weight:400;
+  }
+  .gold{color:var(--gold);}
+  .num-mono{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+
+  .hr-gold{
+    width:160px;height:2px;background:var(--gold);border:0;
+  }
+
+  /* shared card */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px;
+    position:relative;
+  }
+  .card.pad-l{padding:40px 44px;}
+
+  /* slide bottom strip */
+  .footstrip{
+    position:absolute;left:120px;right:120px;bottom:56px;
+    display:flex;align-items:center;justify-content:space-between;
+    color:var(--muted);
+    font-size:14px;letter-spacing:0.22em;text-transform:uppercase;
+    font-weight:500;
+  }
+
+  /* ============== SLIDE 1 — PORTADA ============== */
+  .s-portada{
+    padding:0;
+    background:
+      radial-gradient(60% 50% at 50% 50%, rgba(200,146,60,0.10) 0%, transparent 60%),
+      var(--bg);
+  }
+  .s-portada .cover{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+    z-index:2;
+  }
+  .s-portada .meta-top{
+    position:absolute;top:60px;left:120px;right:120px;
+    display:flex;justify-content:space-between;
+    color:var(--muted);
+    font-size:16px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500;
+  }
+  .s-portada .meta-top .dot{display:inline-block;width:7px;height:7px;background:var(--gold);border-radius:50%;margin-right:14px;vertical-align:middle;}
+  .s-portada h1{
+    font-family:var(--serif);
+    font-weight:500;
+    letter-spacing:0.04em;
+    font-size:280px;
+    line-height:1;
+    margin:0;
+  }
+  .s-portada h1 .ampers{color:var(--gold);font-style:italic;font-weight:400;}
+  .s-portada .sub{
+    margin-top:36px;
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:30px;
+    letter-spacing:0.04em;
+    color:var(--text);
+    max-width:1300px;
+  }
+  .s-portada .sub .you{color:var(--gold);font-style:italic;font-family:var(--serif);font-weight:500;}
+  .s-portada .gold-rule{
+    width:140px;height:2px;background:var(--gold);margin:48px auto 0;
+  }
+  .s-portada .ucema{
+    margin-top:40px;
+    color:var(--muted);
+    font-size:18px;letter-spacing:0.4em;text-transform:uppercase;
+  }
+  .s-portada .ucema b{color:var(--text);font-weight:600;}
+  .s-portada .bg-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:120px 120px;
+    background-position:60px 60px;
+    mask-image: radial-gradient(60% 60% at 50% 50%, #000 35%, transparent 80%);
+    pointer-events:none;
+  }
+  .s-portada .corner{
+    position:absolute;
+    color:var(--muted);
+    font-size:13px;letter-spacing:0.3em;text-transform:uppercase;
+    font-family:var(--mono);
+  }
+  .s-portada .corner.tl{top:60px;left:120px;}
+  .s-portada .corner.tr{top:60px;right:120px;}
+  .s-portada .corner.bl{bottom:60px;left:120px;}
+  .s-portada .corner.br{bottom:60px;right:120px;}
+
+  /* ============== SLIDE 2 — EL PROYECTO ============== */
+  .head-row{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:48px;
+    margin-top:18px;
+  }
+  .head-row .h-section{flex:1;}
+  .head-row .lead{max-width:640px;}
+
+  .three-col{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;
+    margin-top:72px;
+  }
+  .three-col .col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:44px 40px;
+    display:flex;flex-direction:column;gap:28px;
+    min-height:340px;
+  }
+  .col .icn{
+    width:56px;height:56px;border-radius:50%;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .col .col-title{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:36px;
+    line-height:1.1;
+  }
+  .col .col-body{
+    color:var(--muted);
+    font-size:20px;line-height:1.55;
+  }
+  .col .col-meta{
+    margin-top:auto;
+    color:var(--muted);
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+  }
+  .col .col-meta b{color:var(--gold);font-weight:600;}
+
+  .palette-strip{
+    margin-top:auto;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--line);
+    border-radius:6px;overflow:hidden;
+  }
+  .palette-strip .swatch{
+    height:120px;
+    display:flex;align-items:flex-end;justify-content:space-between;
+    padding:18px 24px;
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:rgba(0,0,0,0.78);
+    font-weight:600;
+  }
+  .palette-strip .swatch.rose{background:var(--rose);}
+  .palette-strip .swatch.sage{background:var(--sage);color:rgba(255,255,255,0.92);}
+  .palette-strip .swatch.amber{background:var(--amber);color:rgba(0,0,0,0.85);}
+  .palette-strip .swatch .mono{font-family:var(--mono);font-weight:500;letter-spacing:0.16em;}
+
+  /* ============== SLIDE 3 — PRODUCTOS ============== */
+  .product-row{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    margin-top:64px;
+    flex:1;
+    min-height:0;
+  }
+  .product-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    position:relative;
+  }
+  .product-card .top-bar{
+    height:3px;background:var(--rose);
+  }
+  .product-card.sage .top-bar{background:var(--sage);}
+  .product-card.amber .top-bar{background:var(--amber);}
+  .product-card .img{
+    height:380px;
+    background:#0A0A0A;
+    background-size:cover;background-position:center;
+    border-bottom:1px solid var(--line);
+  }
+  .product-card .body{
+    padding:36px 40px 40px;
+    display:flex;flex-direction:column;gap:22px;
+    flex:1;
+  }
+  .product-card .name{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:48px;
+    line-height:1;
+  }
+  .product-card .ingr{
+    font-size:18px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--rose);font-weight:500;
+  }
+  .product-card.sage .ingr{color:var(--sage);}
+  .product-card.amber .ingr{color:var(--amber);}
+  .product-card .price{
+    font-family:var(--serif);
+    font-size:44px;
+    color:var(--gold);
+    font-weight:500;
+    line-height:1;
+    margin-top:8px;
+  }
+  .product-card .benef{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-top:auto;
+  }
+  .product-card .benef .chip{
+    border:1px solid var(--line-2);
+    color:var(--text);
+    padding:8px 14px;border-radius:999px;
+    font-size:14px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;
+  }
+  .product-card .footer-line{
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--line);
+    padding:18px 40px;
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .product-card .footer-line b{color:var(--text);font-weight:600;}
+
+  /* ============== SLIDE 4 — TP 8 ============== */
+  .two-col{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:48px;
+    margin-top:72px;
+    flex:1;min-height:0;
+  }
+  .check-list{display:flex;flex-direction:column;gap:22px;}
+  .check-list .item{
+    display:grid;grid-template-columns:40px 1fr;gap:20px;
+    align-items:start;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:2px solid var(--gold);
+    padding:22px 26px;border-radius:4px;
+  }
+  .check-list .item .ico{
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(200,146,60,0.12);
+    color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:700;
+    margin-top:4px;
+  }
+  .check-list .item .it-title{
+    font-family:var(--sans);font-size:22px;font-weight:600;color:var(--text);
+  }
+  .check-list .item .it-body{
+    color:var(--muted);font-size:18px;line-height:1.5;margin-top:4px;
+  }
+  .check-list .item .it-body b{color:var(--text);font-weight:600;}
+
+  .pnl{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:32px 36px;
+    display:flex;flex-direction:column;
+  }
+  .pnl-title{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .pnl-title .t{font-family:var(--serif);font-size:32px;font-weight:500;}
+  .pnl-title .m{
+    font-family:var(--mono);font-size:13px;letter-spacing:0.18em;color:var(--muted);text-transform:uppercase;
+  }
+  .pnl table{
+    width:100%;border-collapse:collapse;
+    font-family:var(--sans);
+  }
+  .pnl tr{border-bottom:1px solid var(--line);}
+  .pnl tr:last-child{border-bottom:0;}
+  .pnl td{
+    padding:18px 0;
+    font-size:20px;
+    color:var(--text);
+  }
+  .pnl td.label{color:var(--muted);font-weight:400;}
+  .pnl td.amt{
+    text-align:right;
+    font-family:var(--mono);
+    font-variant-numeric:tabular-nums;
+    font-weight:500;
+    color:var(--text);
+  }
+  .pnl td.pct{
+    text-align:right;width:140px;
+    color:var(--muted);
+    font-family:var(--mono);font-size:16px;
+  }
+  .pnl tr.pos td.amt{color:var(--gold);font-weight:600;}
+  .pnl tr.pos td.pct{color:var(--gold-soft);}
+  .pnl tr.tot td{padding:24px 0 8px;font-size:22px;}
+  .pnl tr.tot td.label{color:var(--text);font-weight:600;letter-spacing:0.04em;}
+  .pnl tr.tot td.amt{font-size:28px;}
+  .pnl .legend{
+    margin-top:18px;
+    color:var(--muted);font-size:14px;letter-spacing:0.22em;text-transform:uppercase;
+  }
+
+  /* ============== SLIDE 5 — TP 9 ============== */
+  .ux-split{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    margin-top:64px;
+    flex:1;min-height:0;
+  }
+  .ux-block{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:36px 40px;
+    display:flex;flex-direction:column;
+  }
+  .ux-block h3{
+    font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.1;
+    margin-bottom:6px;
+  }
+  .ux-block .meta{color:var(--muted);font-size:16px;letter-spacing:0.22em;text-transform:uppercase;}
+  .heur{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    margin-top:28px;flex:1;
+  }
+  .heur .pane{
+    border-radius:6px;padding:24px 26px;
+    display:flex;flex-direction:column;gap:14px;
+    height:100%;
+    border:1px solid var(--line);
+  }
+  .heur .pane.ok{background:rgba(111,165,107,0.08);border-color:rgba(111,165,107,0.25);}
+  .heur .pane.warn{background:rgba(212,162,74,0.07);border-color:rgba(212,162,74,0.28);}
+  .heur .pane .lab{
+    font-size:14px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;
+  }
+  .heur .pane.ok .lab{color:var(--good);}
+  .heur .pane.warn .lab{color:var(--warn);}
+  .heur .pane ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .heur .pane li{
+    font-family:var(--sans);font-size:17px;color:var(--text);
+    display:flex;gap:10px;align-items:baseline;
+  }
+  .heur .pane li .h{
+    font-family:var(--mono);color:inherit;width:36px;display:inline-block;
+    font-weight:600;
+  }
+  .heur .pane.ok li .h{color:var(--good);}
+  .heur .pane.warn li .h{color:var(--warn);}
+  .heur .pane li .t{color:var(--muted);font-size:16px;}
+  .ux-block .footnote{
+    margin-top:18px;
+    color:var(--muted);font-size:15px;
+  }
+  .ux-block .footnote b{color:var(--gold);font-weight:600;}
+
+  .empathy{
+    display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+    gap:14px;margin-top:24px;flex:1;
+  }
+  .empathy .q{
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);border-radius:6px;
+    padding:18px 22px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .empathy .q .hd{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;
+  }
+  .empathy .q .hd .e{font-size:18px;letter-spacing:0;}
+  .empathy .q ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .empathy .q li{
+    color:var(--text);font-size:15px;line-height:1.4;
+    display:flex;gap:8px;
+  }
+  .empathy .q li::before{
+    content:"";display:inline-block;flex-shrink:0;
+    width:4px;height:4px;background:var(--gold);border-radius:50%;
+    margin-top:8px;
+  }
+
+  /* ============== SLIDE 6 — REDES ============== */
+  .week{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:14px;
+    margin-top:64px;flex:1;
+  }
+  .day{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:24px 22px;
+    display:flex;flex-direction:column;gap:18px;
+    position:relative;
+  }
+  .day .dow{
+    font-family:var(--sans);
+    font-size:13px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;
+  }
+  .day .ddate{
+    font-family:var(--serif);font-size:48px;font-weight:500;line-height:1;
+    color:var(--text);
+  }
+  .day .ftype{
+    margin-top:auto;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  .day .ftype .kind{
+    font-size:13px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;
+    color:var(--gold);
+  }
+  .day .ftype .what{font-size:17px;color:var(--text);line-height:1.3;}
+  .day .ftype .prod{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:0.18em;text-transform:uppercase;}
+  .day .pdot{
+    position:absolute;top:24px;right:22px;
+    width:10px;height:10px;border-radius:50%;background:var(--gold);
+  }
+  .day.rose .pdot{background:var(--rose);}
+  .day.sage .pdot{background:var(--sage);}
+  .day.amber .pdot{background:var(--amber);}
+  .day.mixed .pdot{background:linear-gradient(135deg,var(--rose) 0%,var(--sage) 50%,var(--amber) 100%);}
+
+  .week-summary{
+    margin-top:28px;
+    display:flex;gap:48px;align-items:center;justify-content:flex-end;
+    color:var(--muted);
+    font-family:var(--mono);font-size:18px;letter-spacing:0.16em;text-transform:uppercase;
+  }
+  .week-summary b{color:var(--text);font-weight:600;}
+  .week-summary .sep{color:var(--gold);}
+
+  /* ============== SLIDE 7 — PRECIOS ============== */
+  .browser{
+    margin-top:48px;
+    background:#0A0A0A;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    flex:1;display:flex;flex-direction:column;
+    box-shadow:0 40px 80px rgba(0,0,0,0.6);
+  }
+  .browser .chrome{
+    display:flex;align-items:center;gap:16px;
+    padding:16px 22px;
+    background:#111;
+    border-bottom:1px solid var(--line);
+  }
+  .browser .dots{display:flex;gap:8px;}
+  .browser .dots i{width:13px;height:13px;border-radius:50%;display:block;}
+  .browser .dots i:nth-child(1){background:#3a3a3a;}
+  .browser .dots i:nth-child(2){background:#3a3a3a;}
+  .browser .dots i:nth-child(3){background:#3a3a3a;}
+  .browser .url{
+    flex:1;background:#1a1a1a;border:1px solid var(--line);border-radius:6px;
+    padding:10px 18px;
+    font-family:var(--mono);font-size:16px;color:var(--muted);
+    display:flex;align-items:center;gap:10px;
+  }
+  .browser .url .lock{color:var(--gold);font-size:14px;}
+  .browser .url .path{color:var(--text);}
+  .browser .badge-ok{
+    background:rgba(111,165,107,0.18);
+    border:1px solid rgba(111,165,107,0.4);
+    color:var(--good);
+    padding:6px 14px;border-radius:999px;
+    font-size:13px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+  }
+  .browser .view{
+    flex:1;
+    padding:48px 60px 56px;
+    display:flex;flex-direction:column;
+    background:
+      radial-gradient(80% 60% at 50% 0%, rgba(200,146,60,0.06), transparent 70%),
+      #0A0A0A;
+  }
+  .browser .view .vhead{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .browser .view .vhead h4{
+    font-family:var(--serif);font-weight:500;font-size:40px;
+  }
+  .browser .view .vhead .sub{
+    color:var(--muted);font-size:16px;letter-spacing:0.2em;text-transform:uppercase;
+  }
+  .browser .pricing{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    margin-top:32px;
+    flex:1;
+  }
+  .browser .pcard{
+    background:#141414;border:1px solid var(--line);border-radius:8px;
+    padding:28px 30px;display:flex;flex-direction:column;gap:14px;
+    position:relative;overflow:hidden;
+  }
+  .browser .pcard .accent{
+    position:absolute;left:0;top:0;height:100%;width:3px;background:var(--rose);
+  }
+  .browser .pcard.sage .accent{background:var(--sage);}
+  .browser .pcard.amber .accent{background:var(--amber);}
+  .browser .pcard .pname{
+    font-family:var(--serif);font-size:28px;font-weight:500;
+  }
+  .browser .pcard .pin{
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);
+  }
+  .browser .pcard.rose .pin b{color:var(--rose);}
+  .browser .pcard.sage .pin b{color:var(--sage);}
+  .browser .pcard.amber .pin b{color:var(--amber);}
+  .browser .pcard .pin b{font-weight:600;}
+  .browser .pcard .pprice{
+    font-family:var(--serif);font-size:40px;color:var(--gold);font-weight:500;
+    margin-top:auto;
+  }
+  .browser .pcard .pbtn{
+    text-align:center;
+    border:1px solid var(--line-2);
+    padding:12px 16px;border-radius:6px;
+    font-size:13px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--text);font-weight:600;
+  }
+  .browser .pcard.feat .pbtn{background:var(--gold);color:#0a0a0a;border-color:var(--gold);}
+  .browser .pcard.feat{border-color:rgba(200,146,60,0.4);}
+
+  .decisions{
+    position:absolute;
+    bottom:88px;right:120px;
+    background:rgba(20,20,20,0.92);
+    border:1px solid var(--line-2);
+    border-radius:8px;
+    padding:22px 24px;
+    width:360px;
+    display:flex;flex-direction:column;gap:14px;
+    backdrop-filter:blur(6px);
+  }
+  .decisions .dec-t{
+    font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:600;
+  }
+  .decisions ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .decisions li{font-size:15px;color:var(--text);display:flex;gap:10px;}
+  .decisions li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;flex-shrink:0;}
+
+  /* ============== SLIDE 8 — WEBSITE ============== */
+  .site-grid{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:48px;
+    margin-top:64px;flex:1;min-height:0;
+  }
+  .progress-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    padding:48px 52px;display:flex;flex-direction:column;
+  }
+  .progress-card .head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:20px;
+  }
+  .progress-card .head .label{
+    font-size:14px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);
+  }
+  .progress-card .pct{
+    font-family:var(--serif);font-size:140px;line-height:1;font-weight:500;color:var(--gold);
+  }
+  .progress-card .pct sup{font-size:48px;color:var(--muted);font-family:var(--sans);margin-left:8px;font-weight:300;}
+  .progress-card .bar-wrap{margin-top:28px;}
+  .progress-card .bar{
+    height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;
+  }
+  .progress-card .bar .fill{
+    width:70%;height:100%;background:linear-gradient(90deg,#A8762C 0%,var(--gold) 60%,var(--gold-soft) 100%);
+  }
+  .progress-card .bar-labels{
+    display:flex;justify-content:space-between;
+    margin-top:14px;color:var(--muted);font-family:var(--mono);font-size:14px;letter-spacing:0.18em;text-transform:uppercase;
+  }
+  .progress-card .platform{
+    margin-top:auto;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .progress-card .platform .p-t{
+    font-family:var(--serif);font-size:24px;color:var(--text);font-weight:500;
+  }
+  .progress-card .platform .p-m{color:var(--muted);font-size:14px;letter-spacing:0.22em;text-transform:uppercase;}
+  .status-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    padding:36px 40px;display:flex;flex-direction:column;
+  }
+  .status-card h3{
+    font-family:var(--serif);font-weight:500;font-size:30px;margin-bottom:6px;
+  }
+  .status-card .sub{color:var(--muted);font-size:14px;letter-spacing:0.22em;text-transform:uppercase;}
+  .status-list{margin-top:24px;display:flex;flex-direction:column;gap:0;}
+  .status-list .row{
+    display:grid;grid-template-columns:28px 1fr auto;gap:18px;align-items:center;
+    padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .status-list .row:last-child{border-bottom:0;}
+  .status-list .row .dot-st{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--good);
+    border:2px solid rgba(111,165,107,0.25);
+    box-sizing:border-box;
+  }
+  .status-list .row.wip .dot-st{
+    background:transparent;
+    border-color:var(--gold);
+    position:relative;
+  }
+  .status-list .row.wip .dot-st::after{
+    content:"";position:absolute;inset:2px;border-radius:50%;background:var(--gold);
+    opacity:0.5;
+  }
+  .status-list .row .name{font-size:20px;color:var(--text);}
+  .status-list .row .st{
+    font-size:12px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;
+    color:var(--good);
+  }
+  .status-list .row.wip .st{color:var(--gold);}
+
+  /* ============== SLIDE 9 — VIDEO ============== */
+  .video-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    margin-top:72px;flex:1;min-height:0;
+  }
+  .vidcard{
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  .vidcard .preview{
+    aspect-ratio:9/16;
+    width:auto;
+    background:#0A0A0A;
+    background-size:cover;background-position:center;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    flex:1;min-height:0;
+  }
+  .vidcard .preview .play{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:64px;height:64px;border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.16);
+    color:var(--text);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .vidcard .preview .overlay{
+    position:absolute;left:14px;top:14px;
+    display:flex;gap:6px;
+  }
+  .vidcard .preview .overlay span{
+    background:rgba(0,0,0,0.55);
+    color:var(--text);
+    padding:4px 10px;border-radius:4px;
+    font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  }
+  .vidcard .body{
+    padding:24px 26px 26px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .vidcard .body .vname{
+    font-family:var(--serif);font-size:30px;font-weight:500;
+  }
+  .vidcard .body .vname .accent{color:var(--rose);}
+  .vidcard.sage .body .vname .accent{color:var(--sage);}
+  .vidcard.amber .body .vname .accent{color:var(--amber);}
+  .vidcard .body .prompt{
+    color:var(--muted);font-size:15px;line-height:1.55;
+    font-family:var(--mono);
+    background:#0F0F0F;border:1px solid var(--line);border-radius:6px;
+    padding:14px 16px;
+  }
+  .vidcard .body .prompt .hl{color:var(--text);}
+  .vidcard .footer{
+    border-top:1px solid var(--line);
+    padding:14px 26px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .vidcard .footer b{color:var(--text);font-weight:600;}
+
+  /* ============== SLIDE 10 — CIERRE ============== */
+  .timeline-wrap{
+    margin-top:72px;
+    display:flex;flex-direction:column;gap:0;
+    flex:1;
+  }
+  .timeline{
+    position:relative;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    margin-top:24px;
+  }
+  .timeline::before{
+    content:"";position:absolute;left:0;right:0;top:14px;height:1px;
+    background:linear-gradient(90deg,var(--line) 0%,var(--gold) 50%,var(--line) 100%);
+  }
+  .tnode{
+    display:flex;flex-direction:column;align-items:center;
+    padding:0 32px;text-align:center;
+  }
+  .tnode .ring{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;z-index:2;
+  }
+  .tnode .ring i{width:10px;height:10px;border-radius:50%;background:var(--gold);}
+  .tnode.future .ring{border-color:var(--line-2);}
+  .tnode.future .ring i{background:var(--muted);}
+  .tnode.wip .ring{border-color:var(--gold);}
+  .tnode.wip .ring i{background:transparent;border:2px solid var(--gold);width:8px;height:8px;}
+  .tnode .stage-l{
+    margin-top:18px;
+    font-size:13px;letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;
+  }
+  .tnode.wip .stage-l{color:var(--gold-soft);}
+  .tnode.future .stage-l{color:var(--muted);}
+  .tnode .stage-d{
+    margin-top:8px;
+    font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.1;
+  }
+  .tnode ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;align-items:center;}
+  .tnode li{color:var(--text);font-size:18px;}
+  .tnode.future li{color:var(--muted);}
+  .closing{
+    margin-top:auto;padding-top:60px;
+    text-align:center;
+  }
+  .closing .quote{
+    font-family:var(--serif);font-style:italic;
+    color:var(--gold);
+    font-size:64px;line-height:1.1;letter-spacing:-0.005em;
+    font-weight:500;
+  }
+  .closing .quote .b{color:var(--gold-soft);font-style:normal;font-weight:600;}
+  .closing .signature{
+    margin-top:28px;
+    color:var(--muted);
+    font-size:14px;letter-spacing:0.32em;text-transform:uppercase;
+  }
+  .closing .signature b{color:var(--text);font-weight:600;}
+
+  /* tiny dot separators */
+  .dotsep{color:var(--gold);margin:0 12px;}
+
+  /* tweak: kill default <deck-stage> heavy footer for clean look (we add our own) */
+</style>
+</head>
+<body>
+<deck-stage>
+
+<!-- ============================================================
+     SLIDE 1 — PORTADA
+     ============================================================ -->
+<section data-screen-label="01 Portada" class="s-portada">
+  <div class="bg-grid"></div>
+  <div class="corner tl">CAFECTO · EST. 2026</div>
+  <div class="corner tr">UCEMA · COMERCIO ELECTRÓNICO</div>
+  <div class="corner bl">AVANCE DE PROYECTO · V03</div>
+  <div class="corner br">10 / 10</div>
+
+  <div class="cover">
+    <div style="font-family:var(--mono);font-size:14px;letter-spacing:0.5em;color:var(--gold);margin-bottom:48px;">— COFFEE × FUNCTION —</div>
+    <h1>CAFECTO</h1>
+    <div class="gold-rule"></div>
+    <div class="sub">Coffee &amp; Functional Ingredients. <span class="you">Powered by You.</span></div>
+    <div class="ucema">Comercio Electrónico <span style="margin:0 22px;color:var(--gold);">/</span> <b>UCEMA 2026</b> <span style="margin:0 22px;color:var(--gold);">/</span> Avance del proyecto</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 2 — EL PROYECTO
+     ============================================================ -->
+<section data-screen-label="02 El Proyecto">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">01 <b>· El Proyecto</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Punto de partida</div>
+      <h2 class="h-section">¿Qué es <span style="font-style:italic;" class="gold">CAFECTO</span>?</h2>
+    </div>
+    <div class="lead">
+      Marca argentina de <b style="color:var(--text)">café especialidad suplementado</b>: cada blend une grano de calidad con un ingrediente funcional, en un solo ritual diario.
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div class="col">
+      <div class="icn">
+        <!-- coffee cup -->
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13v6a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8z"/><path d="M16 9h2a3 3 0 0 1 0 6h-2"/><path d="M7 3v2M10 3v2M13 3v2"/></svg>
+      </div>
+      <div class="col-title">Café funcional <span class="gold">D2C</span></div>
+      <div class="col-body">Venta directa al consumidor a través de Tiendanube. Sin intermediarios, márgenes saneados y comunicación 1-a-1 con el cliente.</div>
+      <div class="col-meta">Canal · <b>Tiendanube</b></div>
+    </div>
+    <div class="col">
+      <div class="icn">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+      </div>
+      <div class="col-title">Buyer persona <span class="gold">Tomás</span></div>
+      <div class="col-body">32 años, profesional tech en CABA. Optimiza su rendimiento físico y mental. Lee labels, gasta en lo que funciona.</div>
+      <div class="col-meta">CABA · 28–38 años · <b>ABC1</b></div>
+    </div>
+    <div class="col">
+      <div class="icn">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 16l9 4 9-4"/></svg>
+      </div>
+      <div class="col-title">3 productos · <span class="gold">1 ritual</span></div>
+      <div class="col-body"><b style="color:var(--rose)">Daily Glow</b> · <b style="color:var(--sage)">Zen Focus</b> · <b style="color:var(--amber)">Turbo Drive</b>. Mismo grano base, distinto efecto funcional.</div>
+      <div class="col-meta">300g · <b>Bolsa stand-up</b></div>
+    </div>
+  </div>
+
+  <div class="palette-strip" style="margin-top:48px;">
+    <div class="swatch rose"><span>Daily Glow</span><span class="mono">#C08878</span></div>
+    <div class="swatch sage"><span>Zen Focus</span><span class="mono">#5A8A68</span></div>
+    <div class="swatch amber"><span>Turbo Drive</span><span class="mono">#C87830</span></div>
+  </div>
+
+  <div class="footstrip">
+    <span>02</span>
+    <span>UCEMA · 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 3 — PRODUCTOS
+     ============================================================ -->
+<section data-screen-label="03 Productos">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">02 <b>· La línea</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Catálogo</div>
+      <h2 class="h-section">La línea <span style="font-style:italic;" class="gold">CAFECTO</span></h2>
+    </div>
+    <div class="lead">Tres blends, tres beneficios, mismo precio promedio. Una sola decisión: qué versión de vos querés activar hoy.</div>
+  </div>
+
+  <div class="product-row">
+    <div class="product-card rose">
+      <div class="top-bar"></div>
+      <div class="img" style="background-image:url('assets/daily-glow.png');"></div>
+      <div class="body">
+        <div class="ingr">Colágeno Hidrolizado · 10g</div>
+        <div class="name">Daily <span style="color:var(--rose);font-style:italic;">Glow</span></div>
+        <div class="price">$27.999</div>
+        <div class="benef">
+          <span class="chip">Piel</span>
+          <span class="chip">Cabello</span>
+          <span class="chip">Articulaciones</span>
+        </div>
+      </div>
+      <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+    </div>
+
+    <div class="product-card sage">
+      <div class="top-bar"></div>
+      <div class="img" style="background-image:url('assets/zen-focus.png');"></div>
+      <div class="body">
+        <div class="ingr">L-Teanina · 200mg</div>
+        <div class="name">Zen <span style="color:var(--sage);font-style:italic;">Focus</span></div>
+        <div class="price">$25.999</div>
+        <div class="benef">
+          <span class="chip">Foco</span>
+          <span class="chip">Calma</span>
+          <span class="chip">Sin nervios</span>
+        </div>
+      </div>
+      <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+    </div>
+
+    <div class="product-card amber">
+      <div class="top-bar"></div>
+      <div class="img" style="background-image:url('assets/turbo-drive.png');"></div>
+      <div class="body">
+        <div class="ingr">MCT Oil Powder · 5g</div>
+        <div class="name">Turbo <span style="color:var(--amber);font-style:italic;">Drive</span></div>
+        <div class="price">$28.999</div>
+        <div class="benef">
+          <span class="chip">Energía</span>
+          <span class="chip">Saciedad</span>
+          <span class="chip">Keto</span>
+        </div>
+      </div>
+      <div class="footer-line"><span>300G · Stand-up</span><span><b>15 servicios</b></span></div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>03</span>
+    <span>Mismo grano · Tres funciones</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 4 — TP 8: LOGÍSTICA Y STOCK
+     ============================================================ -->
+<section data-screen-label="04 TP8 Logistica">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">TP 8 <b>· Logística &amp; Stock</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Trabajo Práctico 8</div>
+      <h2 class="h-section">Logística y <span style="font-style:italic;" class="gold">stock</span></h2>
+    </div>
+    <div class="lead">Decisiones operativas que impactan directo en el P&amp;L. El envío gratis y el stock propio son los dos pivots que definen la rentabilidad del Q1.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="check-list">
+      <div class="item">
+        <div class="ico">✓</div>
+        <div>
+          <div class="it-title">Carrier · <span class="gold">Andreani</span></div>
+          <div class="it-body">Integración nativa con Tiendanube. Cobertura nacional puerta-a-puerta + sucursal.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ico">✓</div>
+        <div>
+          <div class="it-title">Envío gratis absorbido</div>
+          <div class="it-body"><b>$3.200</b> por orden = <b>9,2%</b> del ticket promedio. Costo marketing, no recargo al cliente.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ico">✓</div>
+        <div>
+          <div class="it-title">Stock propio</div>
+          <div class="it-body">Dropshipping inviable: <b>SEDI/SIRA</b> bloquean importación directa al cliente final. Pulmón local.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="ico">✓</div>
+        <div>
+          <div class="it-title">Punto de reorden · <span class="gold">ROP = 10</span></div>
+          <div class="it-body">Por SKU. Lead-time de proveedor 21 días + stock de seguridad de 5 unidades.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pnl">
+      <div class="pnl-title">
+        <div class="t">P&amp;L resumido <span class="gold" style="font-style:italic;">/ Q1</span></div>
+        <div class="m">ARS · Sin IVA</div>
+      </div>
+      <table>
+        <tr>
+          <td class="label">Venta Bruta</td>
+          <td class="amt">$905.000</td>
+          <td class="pct">100,0%</td>
+        </tr>
+        <tr class="pos">
+          <td class="label">Gross Profit</td>
+          <td class="amt">$566.850</td>
+          <td class="pct">64,6%</td>
+        </tr>
+        <tr class="pos">
+          <td class="label">PC3 — Contribución</td>
+          <td class="amt">$319.745</td>
+          <td class="pct">35,4%</td>
+        </tr>
+        <tr class="tot pos">
+          <td class="label">EBITDA</td>
+          <td class="amt">$211.745</td>
+          <td class="pct">23,4%</td>
+        </tr>
+      </table>
+      <div class="legend">EBITDA &gt; 20% · objetivo cumplido</div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>04</span>
+    <span>TP 8 · Entregado</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 5 — TP 9: UX
+     ============================================================ -->
+<section data-screen-label="05 TP9 UX">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">TP 9 <b>· Experiencia del Usuario</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Trabajo Práctico 9</div>
+      <h2 class="h-section">Experiencia del <span style="font-style:italic;" class="gold">usuario</span></h2>
+    </div>
+    <div class="lead">Auditoría heurística + mapa de empatía. Identificamos 5 oportunidades de mejora concretas sobre la home y el flujo de checkout.</div>
+  </div>
+
+  <div class="ux-split">
+    <div class="ux-block">
+      <h3>Análisis Heurístico</h3>
+      <div class="meta">Nielsen · 10 principios</div>
+      <div class="heur">
+        <div class="pane ok">
+          <div class="lab">✓ Cumple · 5</div>
+          <ul>
+            <li><span class="h">H1</span><span class="t">Visibilidad del estado del sistema</span></li>
+            <li><span class="h">H2</span><span class="t">Lenguaje del usuario</span></li>
+            <li><span class="h">H4</span><span class="t">Consistencia y estándares</span></li>
+            <li><span class="h">H6</span><span class="t">Reconocer antes que recordar</span></li>
+            <li><span class="h">H8</span><span class="t">Estética y diseño minimalista</span></li>
+          </ul>
+        </div>
+        <div class="pane warn">
+          <div class="lab">! Mejoras · 5</div>
+          <ul>
+            <li><span class="h">H3</span><span class="t">Control y libertad del usuario</span></li>
+            <li><span class="h">H5</span><span class="t">Prevención de errores</span></li>
+            <li><span class="h">H7</span><span class="t">Flexibilidad y eficiencia</span></li>
+            <li><span class="h">H9</span><span class="t">Recuperación ante errores</span></li>
+            <li><span class="h">H10</span><span class="t">Ayuda y documentación</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footnote"><b>5 de 10</b> principios con plan de mejora concreto para Q2.</div>
+    </div>
+
+    <div class="ux-block">
+      <h3>Mapa de empatía — <span class="gold" style="font-style:italic;">Tomás</span></h3>
+      <div class="meta">32 años · CABA · Profesional tech</div>
+      <div class="empathy">
+        <div class="q">
+          <div class="hd"><span class="e">🧠</span> Piensa &amp; Siente</div>
+          <ul>
+            <li>"Quiero rendir más sin depender de cafeína."</li>
+            <li>Frustrado con suplementos genéricos.</li>
+          </ul>
+        </div>
+        <div class="q">
+          <div class="hd"><span class="e">👀</span> Ve</div>
+          <ul>
+            <li>Marcas D2C en Instagram · estética premium.</li>
+            <li>Reviews en YouTube, podcasts de biohacking.</li>
+          </ul>
+        </div>
+        <div class="q">
+          <div class="hd"><span class="e">👂</span> Oye</div>
+          <ul>
+            <li>Colegas que "toman MCT por la mañana".</li>
+            <li>Trainer recomienda colágeno post-30.</li>
+          </ul>
+        </div>
+        <div class="q">
+          <div class="hd"><span class="e">💬</span> Dice &amp; Hace</div>
+          <ul>
+            <li>Compra en cuotas, lee etiquetas, repite SKU.</li>
+            <li>Comparte hallazgos con su círculo cercano.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>05</span>
+    <span>TP 9 · Entregado</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 6 — CONSIGNA 5: REDES
+     ============================================================ -->
+<section data-screen-label="06 Redes">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">Consigna 5 <b>· Contenido de Redes</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Consigna 5</div>
+      <h2 class="h-section">Plan semanal de <span style="font-style:italic;" class="gold">contenido</span></h2>
+    </div>
+    <div class="lead">Calendario editorial para Instagram: rotación de productos, formatos balanceados y un anchor educativo cada lunes.</div>
+  </div>
+
+  <div class="week">
+    <div class="day sage">
+      <div class="pdot"></div>
+      <div class="dow">Lun</div>
+      <div class="ddate">01</div>
+      <div class="ftype">
+        <div class="kind">Feed · Educativo</div>
+        <div class="what">L-Teanina vs. cafeína</div>
+        <div class="prod">Zen Focus</div>
+      </div>
+    </div>
+    <div class="day mixed">
+      <div class="pdot"></div>
+      <div class="dow">Mar</div>
+      <div class="ddate">02</div>
+      <div class="ftype">
+        <div class="kind">Story · Encuesta</div>
+        <div class="what">¿Mañana o tarde?</div>
+        <div class="prod">Toda la línea</div>
+      </div>
+    </div>
+    <div class="day amber">
+      <div class="pdot"></div>
+      <div class="dow">Mié</div>
+      <div class="ddate">03</div>
+      <div class="ftype">
+        <div class="kind">Reel · Rutina</div>
+        <div class="what">Mañana keto · 60s</div>
+        <div class="prod">Turbo Drive</div>
+      </div>
+    </div>
+    <div class="day rose">
+      <div class="pdot"></div>
+      <div class="dow">Jue</div>
+      <div class="ddate">04</div>
+      <div class="ftype">
+        <div class="kind">Feed · Producto</div>
+        <div class="what">Beneficios + ingredientes</div>
+        <div class="prod">Daily Glow</div>
+      </div>
+    </div>
+    <div class="day mixed">
+      <div class="pdot"></div>
+      <div class="dow">Vie</div>
+      <div class="ddate">05</div>
+      <div class="ftype">
+        <div class="kind">Story · UGC</div>
+        <div class="what">Repost cliente real</div>
+        <div class="prod">A elección</div>
+      </div>
+    </div>
+    <div class="day mixed">
+      <div class="pdot"></div>
+      <div class="dow">Sáb</div>
+      <div class="ddate">06</div>
+      <div class="ftype">
+        <div class="kind">Feed · Lifestyle</div>
+        <div class="what">Combo total · 3 SKU</div>
+        <div class="prod">Combo Cafecto</div>
+      </div>
+    </div>
+    <div class="day sage">
+      <div class="pdot"></div>
+      <div class="dow">Dom</div>
+      <div class="ddate">07</div>
+      <div class="ftype">
+        <div class="kind">Story · Educativo</div>
+        <div class="what">Mini-thread mindfulness</div>
+        <div class="prod">Zen Focus</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week-summary">
+    <span><b>3</b> feed</span><span class="sep">/</span>
+    <span><b>5</b> stories</span><span class="sep">/</span>
+    <span><b>1</b> reel</span><span class="sep">/</span>
+    <span>semana</span>
+  </div>
+
+  <div class="footstrip">
+    <span>06</span>
+    <span>Consigna 5 · Entregada</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 7 — PÁGINA DE PRECIOS
+     ============================================================ -->
+<section data-screen-label="07 Pagina Precios">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">Entregable <b>· Página de precios</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">HTML entregable</div>
+      <h2 class="h-section">Página de <span style="font-style:italic;" class="gold">precios</span></h2>
+    </div>
+    <div class="lead">Mockup funcional construido en HTML/CSS. Mobile-first, estética oscura con acento por producto, sin fricción.</div>
+  </div>
+
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div class="url"><span class="lock">●</span> https://<span class="path">cafecto.com/precios</span></div>
+      <div class="badge-ok">Entregado ✓</div>
+    </div>
+    <div class="view">
+      <div class="vhead">
+        <h4>Elegí tu blend</h4>
+        <div class="sub">Envío gratis · Todo el país</div>
+      </div>
+      <div class="pricing">
+        <div class="pcard rose">
+          <div class="accent"></div>
+          <div class="pname">Daily Glow</div>
+          <div class="pin">Colágeno · <b>10g</b></div>
+          <div style="color:var(--muted);font-size:14px;line-height:1.5;">Piel firme, cabello fuerte y articulaciones más livianas en el día a día.</div>
+          <div class="pprice">$27.999</div>
+          <div class="pbtn">Agregar al carrito</div>
+        </div>
+        <div class="pcard sage feat">
+          <div class="accent"></div>
+          <div class="pname">Zen Focus <span class="gold" style="font-style:italic;font-size:18px;">· popular</span></div>
+          <div class="pin">L-Teanina · <b>200mg</b></div>
+          <div style="color:var(--muted);font-size:14px;line-height:1.5;">Foco sostenido y calma alerta, sin el bajón ni el nerviosismo de la cafeína sola.</div>
+          <div class="pprice">$25.999</div>
+          <div class="pbtn">Agregar al carrito</div>
+        </div>
+        <div class="pcard amber">
+          <div class="accent"></div>
+          <div class="pname">Turbo Drive</div>
+          <div class="pin">MCT · <b>5g</b></div>
+          <div style="color:var(--muted);font-size:14px;line-height:1.5;">Energía limpia tipo keto y saciedad real para tus mañanas más exigentes.</div>
+          <div class="pprice">$28.999</div>
+          <div class="pbtn">Agregar al carrito</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="decisions">
+    <div class="dec-t">3 decisiones de diseño</div>
+    <ul>
+      <li>Estética oscura con acento por producto</li>
+      <li>Precios visibles, sin pop-ups ni fricción</li>
+      <li>Mobile-first, responsive desde 360px</li>
+    </ul>
+  </div>
+
+  <div class="footstrip">
+    <span>07</span>
+    <span>Página de precios · Entregada</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 8 — WEBSITE
+     ============================================================ -->
+<section data-screen-label="08 Website">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">Entregable <b>· Sitio web</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">En construcción</div>
+      <h2 class="h-section">Sitio web · <span style="font-style:italic;" class="gold">Lovable</span></h2>
+    </div>
+    <div class="lead">7 secciones planificadas, 5 ya implementadas. La integración del carrito y el checkout por WhatsApp cierran el MVP comercial.</div>
+  </div>
+
+  <div class="site-grid">
+    <div class="progress-card">
+      <div class="head">
+        <div class="label">Progreso de desarrollo</div>
+        <div class="label gold">5 / 7</div>
+      </div>
+      <div class="pct">70<sup>%</sup></div>
+      <div class="bar-wrap">
+        <div class="bar"><div class="fill"></div></div>
+        <div class="bar-labels">
+          <span>· Build</span>
+          <span style="color:var(--gold);">Hoy</span>
+          <span>Launch ·</span>
+        </div>
+      </div>
+      <div class="platform">
+        <div>
+          <div class="p-t">Lovable.dev</div>
+          <div class="p-m" style="margin-top:6px;">Stack · React + Vite</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="p-t" style="color:var(--gold);">v0.7</div>
+          <div class="p-m" style="margin-top:6px;">Iteración 12</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-card">
+      <h3>Secciones del sitio</h3>
+      <div class="sub">Estado por componente</div>
+      <div class="status-list">
+        <div class="row"><div class="dot-st"></div><div class="name">Hero + navbar</div><div class="st">Live</div></div>
+        <div class="row"><div class="dot-st"></div><div class="name">Sección productos</div><div class="st">Live</div></div>
+        <div class="row"><div class="dot-st"></div><div class="name">Combos</div><div class="st">Live</div></div>
+        <div class="row"><div class="dot-st"></div><div class="name">Reviews</div><div class="st">Live</div></div>
+        <div class="row"><div class="dot-st"></div><div class="name">FAQ</div><div class="st">Live</div></div>
+        <div class="row wip"><div class="dot-st"></div><div class="name">Integración carrito</div><div class="st">En curso</div></div>
+        <div class="row wip"><div class="dot-st"></div><div class="name">Checkout WhatsApp</div><div class="st">En curso</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>08</span>
+    <span>Website · 70% completo</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 9 — VIDEO
+     ============================================================ -->
+<section data-screen-label="09 Video">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">Producción <b>· Video</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Prompts de video</div>
+      <h2 class="h-section">Gemini <span style="font-style:italic;" class="gold">Veo</span> · 3 piezas</h2>
+    </div>
+    <div class="lead">Un spot vertical por blend. Mismo grid de producción, paleta y atmósfera distintas para reforzar el código cromático de cada SKU.</div>
+  </div>
+
+  <div class="video-grid">
+    <div class="vidcard rose">
+      <div class="preview" style="background-image:linear-gradient(180deg,rgba(0,0,0,0.0) 40%,rgba(0,0,0,0.8) 100%),url('assets/daily-glow.png');">
+        <div class="overlay"><span>9:16</span><span>8s</span></div>
+        <div class="play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <div class="vname">Daily <span class="accent" style="font-style:italic;">Glow</span></div>
+        <div class="prompt"><span class="hl">Macro</span> de ritual matutino · paleta <span class="hl">rose copper</span> · push-in lento sobre taza · luz ventana suave.</div>
+      </div>
+      <div class="footer"><span>8s · Gemini Veo</span><b>9:16</b></div>
+    </div>
+
+    <div class="vidcard sage">
+      <div class="preview" style="background-image:linear-gradient(180deg,rgba(0,0,0,0.0) 40%,rgba(0,0,0,0.8) 100%),url('assets/zen-focus.png');">
+        <div class="overlay"><span>9:16</span><span>8s</span></div>
+        <div class="play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <div class="vname">Zen <span class="accent" style="font-style:italic;">Focus</span></div>
+        <div class="prompt">Vista <span class="hl">cenital</span> · cuchara dibuja círculo en el café · paleta verde sage · <span class="hl">calma absoluta</span>.</div>
+      </div>
+      <div class="footer"><span>8s · Gemini Veo</span><b>9:16</b></div>
+    </div>
+
+    <div class="vidcard amber">
+      <div class="preview" style="background-image:linear-gradient(180deg,rgba(0,0,0,0.0) 40%,rgba(0,0,0,0.8) 100%),url('assets/turbo-drive.png');">
+        <div class="overlay"><span>9:16</span><span>8s</span></div>
+        <div class="play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <div class="vname">Turbo <span class="accent" style="font-style:italic;">Drive</span></div>
+        <div class="prompt"><span class="hl">Overhead spotlight</span> sobre taza · swirl <span class="hl">amber</span> en cámara lenta · energía contenida.</div>
+      </div>
+      <div class="footer"><span>8s · Gemini Veo</span><b>9:16</b></div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>09</span>
+    <span>Video · En producción</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     SLIDE 10 — CIERRE
+     ============================================================ -->
+<section data-screen-label="10 Cierre">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>CAFECTO · Avance UCEMA 2026</div>
+    <div class="chapter">10 <b>· Próximos pasos</b></div>
+  </div>
+
+  <div class="head-row">
+    <div>
+      <div class="eyebrow" style="margin-bottom:18px;">Roadmap</div>
+      <h2 class="h-section">Próximos <span style="font-style:italic;" class="gold">pasos</span></h2>
+    </div>
+    <div class="lead">Tres entregables consolidados, dos en curso y tres líneas estratégicas para cerrar el cuatrimestre con un proyecto listo para defender.</div>
+  </div>
+
+  <div class="timeline-wrap">
+    <div class="timeline">
+      <div class="tnode">
+        <div class="ring"><i></i></div>
+        <div class="stage-l">Hecho</div>
+        <div class="stage-d">TP completados</div>
+        <ul>
+          <li>TP 8 · Logística &amp; Stock</li>
+          <li>TP 9 · Experiencia de Usuario</li>
+          <li>Consigna 5 · Redes</li>
+        </ul>
+      </div>
+      <div class="tnode wip">
+        <div class="ring"><i></i></div>
+        <div class="stage-l">En curso</div>
+        <div class="stage-d">Producción</div>
+        <ul>
+          <li>Sitio web · Lovable · 70%</li>
+          <li>Videos · Gemini Veo · 3 piezas</li>
+          <li>Integración carrito + checkout</li>
+        </ul>
+      </div>
+      <div class="tnode future">
+        <div class="ring"><i></i></div>
+        <div class="stage-l">Próximo</div>
+        <div class="stage-d">Lanzamiento</div>
+        <ul>
+          <li>Estrategia de lanzamiento</li>
+          <li>Métricas de conversión</li>
+          <li>Plan de medios pagos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="closing">
+      <div class="quote">"Three blends. Three benefits. <span class="b">One daily ritual.</span>"</div>
+      <div class="signature">CAFECTO <span class="dotsep">·</span> Comercio Electrónico <span class="dotsep">·</span> <b>UCEMA 2026</b></div>
+    </div>
+  </div>
+
+  <div class="footstrip">
+    <span>10</span>
+    <span>Fin del avance · Gracias</span>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+(async () => {
+  try { await customElements.whenDefined('deck-stage'); } catch (e) {}
+  const ds = document.querySelector('deck-stage');
+  if (ds) {
+    // Weigh only slide children — same filter as deck-stage.length. Skipping
+    // slotted script/style/template keeps inline Babel/CSS from registering
+    // as stable "content" before the framework has mounted anything.
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of ds.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll('img,svg,canvas,video').length;
+      }
+      return text + media * 100;
+    };
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      if (n > 0 && n === last) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  try { await document.fonts.ready; } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>
